@@ -1,4 +1,3 @@
-
 buildscript {
     ext {
         queryDslVersion = "5.0.0"
@@ -12,11 +11,12 @@ plugins {
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
+
 group = 'noteasy'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = "16"
+	sourceCompatibility = "11"
 }
 
 configurations {
@@ -51,6 +51,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
+    //querydsl 추가
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
 
@@ -64,9 +65,11 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-targetCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_11
 
+//querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
+
 querydsl {
     jpa = true
     querydslSourcesDir = querydslDir

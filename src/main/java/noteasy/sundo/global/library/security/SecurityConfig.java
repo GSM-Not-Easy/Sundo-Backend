@@ -16,32 +16,32 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final JwtTokenProvider jwtTokenProvider;
+//    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) {
-        http.cors()
-                .and()
-                .csrf().disable()
-
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-
-                // health
-                .mvcMatchers(HttpMethod.GET, "/").permitAll()
-                .anyRequest().authenticated()
-                .and()
-
-                .exceptionHandling()
-                .authenticationEntryPoint(CustomAuthenticationEntryPointHandler())
-                .accessDeniedHandler(CustomAccessDeniedHandler())
-                .and()
-
-                .apply(new FilterConfig(jwtTokenProvider))
-                .and()
-                .build();
+//        http.corzs()
+//                .and()
+//                .csrf().disable()
+//
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .authorizeRequests()
+//                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+//
+//                // health
+//                .mvcMatchers(HttpMethod.GET, "/").permitAll()
+//                .anyRequest().authenticated()
+//
+////                .exceptionHandling()
+////                .authenticationEntryPoint(CustomAuthenticationEntryPointHandler())
+////                .accessDeniedHandler(CustomAccessDeniedHandler())
+////                .and()
+////
+////                .apply(new FilterConfig(jwtTokenProvider))
+////                .and()
+//                .build();
+        return null;
     }
 }
