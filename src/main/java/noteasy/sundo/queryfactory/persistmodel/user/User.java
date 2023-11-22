@@ -39,10 +39,6 @@ public class User {
     private boolean isDeleted = Boolean.FALSE;
 }
 
-enum Authority {
-    STUDENT, TEACHER, ADMIN
-}
-
 enum ApproveStatus {
     PENDING, APPROVED
 }
