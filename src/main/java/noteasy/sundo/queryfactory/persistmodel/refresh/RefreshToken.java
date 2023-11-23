@@ -1,9 +1,6 @@
 package noteasy.sundo.queryfactory.persistmodel.refresh;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import noteasy.sundo.queryfactory.persistmodel.user.Authority;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
@@ -16,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 @RedisHash(value = "tbl_refresh_token")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class RefreshToken {
 
     @Id

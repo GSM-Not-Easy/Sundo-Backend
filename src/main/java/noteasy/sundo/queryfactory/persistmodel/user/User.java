@@ -1,9 +1,6 @@
 package noteasy.sundo.queryfactory.persistmodel.user;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,8 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
+@Builder
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +38,3 @@ public class User {
     private boolean isDeleted = Boolean.FALSE;
 }
 
-enum ApproveStatus {
-    PENDING, APPROVED
-}
