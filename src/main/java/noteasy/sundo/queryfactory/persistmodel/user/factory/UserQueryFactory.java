@@ -4,7 +4,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.queryfactory.BaseQueryFactory;
 import noteasy.sundo.queryfactory.persistmodel.user.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -13,7 +12,9 @@ import static noteasy.sundo.queryfactory.persistmodel.user.QUser.user;
 
 @Repository
 @RequiredArgsConstructor
-public abstract class UserQueryFactory implements BaseQueryFactory<User, Long>, JpaRepository<User, Long> {
+
+// repository extends JpaRepository, 
+public class UserQueryFactory implements BaseQueryFactory<User, Long>{
 
     private final JPAQueryFactory queryFactory;
 
