@@ -1,4 +1,4 @@
-package noteasy.sundo.application.domain.user.mapper;
+package noteasy.sundo.application.user.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
