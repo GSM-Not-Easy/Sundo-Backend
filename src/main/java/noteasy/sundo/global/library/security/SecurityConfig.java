@@ -1,47 +1,47 @@
 package noteasy.sundo.global.library.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import noteasy.sundo.global.configuration.FilterConfiguration;
+import noteasy.sundo.global.library.security.handler.CustomAccessDeniedHandler;
+import noteasy.sundo.global.library.security.handler.CustomAuthenticationEntryPointHandler;
+import noteasy.sundo.global.library.security.token.JwtTokenParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsUtils;
-
-import javax.servlet.http.HttpServletRequest;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-//    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenParser jwtTokenParser;
 
     @Bean
-    protected SecurityFilterChain filterChain(HttpSecurity http) {
-//        http.corzs()
-//                .and()
-//                .csrf().disable()
-//
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authorizeRequests()
-//                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-//
-//                // health
-//                .mvcMatchers(HttpMethod.GET, "/").permitAll()
-//                .anyRequest().authenticated()
-//
-////                .exceptionHandling()
-////                .authenticationEntryPoint(CustomAuthenticationEntryPointHandler())
-////                .accessDeniedHandler(CustomAccessDeniedHandler())
-////                .and()
-////
-////                .apply(new FilterConfig(jwtTokenProvider))
-////                .and()
-//                .build();
-        return null;
+    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        return http.cors()
+                .and()
+                .csrf().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .requestMatchers(CorsUtils::isPreFlightRequest)
+                .permitAll()
+
+                .mvcMatchers(HttpMethod.GET, "/").permitAll()
+
+                .anyRequest().authenticated()
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(new CustomAuthenticationEntryPointHandler(new ObjectMapper()))
+                .accessDeniedHandler(new CustomAccessDeniedHandler(new ObjectMapper()))
+                .and()
+                .apply(new FilterConfiguration(jwtTokenParser))
+                .and()
+                .build();
     }
 }
