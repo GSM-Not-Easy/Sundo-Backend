@@ -11,12 +11,13 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 @ConfigurationProperties(prefix = "jwt")
 public class JwtProperties {
 
+    @Getter
     static class Properties {
-        private static final String tokenPrefix = "Bearer ";
-        private static final String tokenHeader = "Authorization";
-        private static final String accessType = "access";
-        private static final String refreshType = "refresh";
-        private static final String roleType = "roleType";
+        public static final String tokenPrefix = "Bearer ";
+        public static final String tokenHeader = "Authorization";
+        public static final String accessType = "access";
+        public static final String refreshType = "refresh";
+        public static final String roleType = "roleType";
     }
 
     private final String accessSecret;
