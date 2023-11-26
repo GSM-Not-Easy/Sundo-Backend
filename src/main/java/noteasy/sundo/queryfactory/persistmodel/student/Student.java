@@ -1,4 +1,4 @@
-package noteasy.sundo.queryfactory.persistmodel.teacher;
+package noteasy.sundo.queryfactory.persistmodel.student;
 
 import lombok.*;
 import noteasy.sundo.queryfactory.persistmodel.classroom.ClassRoom;
@@ -8,22 +8,22 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
-@Table(name = "tbl_teacher")
-public class Teacher {
+@Table(name = "tbl_student")
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "teacher_id", nullable = false)
+    @Column(name = "student_id", nullable = false)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private Subject subject;
+    @Column(nullable = false, columnDefinition = "TINYINT")
+    private Integer grade;
 
     @OneToOne
-    @JoinColumn(name = "class_room_id", nullable = true)
+    @JoinColumn(name = "class_room_id", nullable = false)
     private ClassRoom classRoom;
 
     @Column(name = "is_deleted")
