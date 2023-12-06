@@ -25,11 +25,18 @@ public class UserQueryFactory implements BaseQueryFactory<User, Long>{
      */
     @Override
     public Optional<User> findById(Long id) {
-        User result = queryFactory.selectFrom(user)
+        var result = queryFactory.selectFrom(user)
                 .where(user.isDeleted.isFalse().and(user.id.eq(id)))
                 .fetchOne();
 
-        return Optional.of(result);
+        return Optional.ofNullable(result);
+    }
+
+    public Optional<User> findByEmail(String email) {
+        var result = queryFactory.selectFrom(user)
+                .where(user.isDeleted.isFalse().and(user.email.eq(email)))
+                .fetchOne();
+        return Optional.ofNullable(result);
     }
 
     @Override
@@ -47,4 +54,5 @@ public class UserQueryFactory implements BaseQueryFactory<User, Long>{
                 .set(user.isDeleted, true)
                 .execute();
     }
+
 }

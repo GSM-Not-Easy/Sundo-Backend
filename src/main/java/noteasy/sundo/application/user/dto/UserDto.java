@@ -9,7 +9,7 @@ public class UserDto {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    static class SignUpRequest {
+    public static class SignUpRequest {
         private String email;
         private String password;
         private String name;
