@@ -35,6 +35,7 @@ public class UserQueryFactory implements BaseQueryFactory<User, Long>, UserQuery
         var result = queryFactory.selectFrom(user)
                 .where(user.isDeleted.isFalse().and(user.email.eq(email)))
                 .fetchOne();
+
         return Optional.ofNullable(result);
     }
 

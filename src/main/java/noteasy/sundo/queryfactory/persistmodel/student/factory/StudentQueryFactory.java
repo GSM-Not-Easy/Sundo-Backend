@@ -1,9 +1,8 @@
-package noteasy.sundo.queryfactory.persistmodel.teacher.factory;
+package noteasy.sundo.queryfactory.persistmodel.student.factory;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.queryfactory.BaseQueryFactory;
-import noteasy.sundo.queryfactory.persistmodel.student.QStudent;
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
 import org.springframework.stereotype.Component;
 

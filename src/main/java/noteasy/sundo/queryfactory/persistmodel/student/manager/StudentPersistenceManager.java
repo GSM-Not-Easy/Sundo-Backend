@@ -1,4 +1,4 @@
-package noteasy.sundo.queryfactory.persistmodel.teacher.manager;
+package noteasy.sundo.queryfactory.persistmodel.student.manager;
 
 import noteasy.sundo.queryfactory.BaseQueryFactory;
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
