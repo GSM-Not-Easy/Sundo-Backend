@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
@@ -24,9 +25,10 @@ public class JwtFilter extends OncePerRequestFilter {
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
+
         String accessToken = jwtTokenParser.parseAccessToken(request);
 
-        if(accessToken != null && !accessToken.isBlank()) {
+        if(!Objects.isNull(accessToken) && !accessToken.isBlank()) {
             Authentication authentication = jwtTokenParser.authentication(accessToken);
             SecurityContextHolder.clearContext();
             SecurityContext context = SecurityContextHolder.getContext();

@@ -37,8 +37,8 @@ public class SecurityConfig {
                 .mvcMatchers(HttpMethod.GET, "/").permitAll()
 
                 // auth
-                .mvcMatchers(HttpMethod.POST, "/student").permitAll()
-                .mvcMatchers(HttpMethod.POST, "/teacher").permitAll()
+                .mvcMatchers(HttpMethod.POST, "/auth/student").permitAll()
+                .mvcMatchers(HttpMethod.POST, "/auth/teacher").permitAll()
 
                 .anyRequest().authenticated()
                 .and()

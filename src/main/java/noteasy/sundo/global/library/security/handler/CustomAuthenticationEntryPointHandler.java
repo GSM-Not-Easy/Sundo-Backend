@@ -2,6 +2,7 @@ package noteasy.sundo.global.library.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class CustomAuthenticationEntryPointHandler implements AuthenticationEntryPoint {
 
     private final ObjectMapper objectMapper;
@@ -26,6 +28,7 @@ public class CustomAuthenticationEntryPointHandler implements AuthenticationEntr
             HttpServletRequest request,
             HttpServletResponse response,
             AuthenticationException authException) throws IOException, ServletException {
+        log.info("========== AuthenticationEntryPoint ==========");
         sendErrorResponse(response);
     }
 
