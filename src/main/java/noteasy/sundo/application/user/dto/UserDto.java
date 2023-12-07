@@ -3,8 +3,11 @@ package noteasy.sundo.application.user.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import noteasy.sundo.queryfactory.persistmodel.teacher.Subject;
 import reactor.util.annotation.Nullable;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -52,6 +55,9 @@ public class UserDto {
         @NotBlank
         private String name;
 
+        @Enumerated(EnumType.STRING)
+        @NotNull
+        private Subject subject;
 
         @NotNull
         private Boolean isHomeroom;

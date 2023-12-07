@@ -2,6 +2,7 @@ package noteasy.sundo.queryfactory.persistmodel.student;
 
 import lombok.*;
 import noteasy.sundo.queryfactory.persistmodel.classroom.ClassRoom;
+import noteasy.sundo.queryfactory.persistmodel.user.User;
 
 import javax.persistence.*;
 
@@ -18,6 +19,10 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_id", nullable = false)
     private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(nullable = false, columnDefinition = "TINYINT")
     private Integer grade;
