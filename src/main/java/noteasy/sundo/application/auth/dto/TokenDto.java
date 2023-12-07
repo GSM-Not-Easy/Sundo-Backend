@@ -1,4 +1,4 @@
-package noteasy.sundo.application.domain.auth.dto;
+package noteasy.sundo.application.auth.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -5,7 +5,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import noteasy.sundo.application.domain.auth.dto.TokenDto;
+import noteasy.sundo.application.auth.dto.TokenDto;
 import noteasy.sundo.global.library.security.principle.AuthDetailsService;
 import noteasy.sundo.queryfactory.persistmodel.user.Authority;
 import org.springframework.stereotype.Component;
