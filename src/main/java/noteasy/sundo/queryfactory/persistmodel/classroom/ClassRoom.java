@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString
 @Table(name = "tbl_class_room", uniqueConstraints = {
-        @UniqueConstraint(name = "schoolClassRoom", columnNames = {"grade", "class_room"})
+        @UniqueConstraint(name = "schoolClassRoom", columnNames = {"grade", "class_num"})
 })
 public class ClassRoom {
 
@@ -27,5 +27,6 @@ public class ClassRoom {
     private Integer classNum;
 
     @Column(name = "is_deleted")
+    @Builder.Default
     private boolean isDeleted = Boolean.FALSE;
 }

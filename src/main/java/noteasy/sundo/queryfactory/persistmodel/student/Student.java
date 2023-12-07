@@ -31,6 +31,7 @@ public class Student {
     @JoinColumn(name = "class_room_id", nullable = false)
     private ClassRoom classRoom;
 
+    @Builder.Default
     @Column(name = "is_deleted")
     private boolean isDeleted = Boolean.FALSE;
 }

@@ -35,6 +35,7 @@ public class User {
     private ApproveStatus approveStatus;
 
     @Column(name = "is_deleted")
+    @Builder.Default
     private boolean isDeleted = Boolean.FALSE;
 }
 

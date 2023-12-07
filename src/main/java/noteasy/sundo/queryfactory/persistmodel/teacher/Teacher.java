@@ -32,5 +32,6 @@ public class Teacher {
     private ClassRoom classRoom;
 
     @Column(name = "is_deleted")
+    @Builder.Default
     private boolean isDeleted = Boolean.FALSE;
 }
