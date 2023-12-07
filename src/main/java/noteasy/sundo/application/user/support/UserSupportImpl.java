@@ -6,6 +6,7 @@ import noteasy.sundo.global.error.GlobalException;
 import noteasy.sundo.queryfactory.persistmodel.user.User;
 import noteasy.sundo.queryfactory.persistmodel.user.manager.UserPersistenceManager;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class UserSupportImpl implements UserSupport {
 
     private final UserPersistenceManager pm;
+    private final PasswordEncoder encoder;
 
     @Override
     public void save(User user) {
@@ -37,6 +39,22 @@ public class UserSupportImpl implements UserSupport {
     }
 
     @Override
-    public void signUpValidate(UserDto.SignUpRequest request) {
+    public void signUpValidate(UserDto.StudentSignUpRequest request) {
+        var requestEmail = request.getEmail();
+        var isExist = pm.existsByEmail(requestEmail);
+
+        if(isExist) {
+            throw new GlobalException("Already Exist User", HttpStatus.ALREADY_REPORTED);
+        }
+    }
+
+    @Override
+    public void signUpTeacher() {
+
+    }
+
+    @Override
+    public void signUpStudent() {
+
     }
 }

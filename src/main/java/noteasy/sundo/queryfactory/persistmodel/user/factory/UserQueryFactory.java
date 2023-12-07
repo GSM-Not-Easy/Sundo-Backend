@@ -12,9 +12,7 @@ import static noteasy.sundo.queryfactory.persistmodel.user.QUser.user;
 
 @Repository
 @RequiredArgsConstructor
-
-// repository extends JpaRepository, 
-public class UserQueryFactory implements BaseQueryFactory<User, Long>{
+public class UserQueryFactory implements BaseQueryFactory<User, Long>, UserQueryFactoryNeed{
 
     private final JPAQueryFactory queryFactory;
 
@@ -32,11 +30,22 @@ public class UserQueryFactory implements BaseQueryFactory<User, Long>{
         return Optional.ofNullable(result);
     }
 
+    @Override
     public Optional<User> findByEmail(String email) {
         var result = queryFactory.selectFrom(user)
                 .where(user.isDeleted.isFalse().and(user.email.eq(email)))
                 .fetchOne();
         return Optional.ofNullable(result);
+    }
+
+    @Override
+    public Boolean existsByEmail(String email) {
+        var fetchOne = queryFactory.selectOne()
+                .from(user)
+                .where(user.isDeleted.isFalse().and(user.email.equalsIgnoreCase(email)))
+                .fetchOne();
+
+        return fetchOne != null;
     }
 
     @Override

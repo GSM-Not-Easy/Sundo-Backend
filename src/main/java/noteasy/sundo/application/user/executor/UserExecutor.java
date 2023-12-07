@@ -16,6 +16,6 @@ public class UserExecutor {
     private final UserSupport userSupport;
 
     @Transactional(rollbackFor = Exception.class)
-    public void executeSignUp(UserDto.SignUpRequest request) {
+    public void executeSignUp(UserDto.StudentSignUpRequest request) {
     }
 }

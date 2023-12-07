@@ -9,5 +9,7 @@ public interface UserSupport {
     User findUserById(Long id);
     void deleteById(Long id);
     void delete(User user);
-    void signUpValidate(UserDto.SignUpRequest request);
+    void signUpValidate(UserDto.StudentSignUpRequest request);
+    void signUpTeacher();
+    void signUpStudent();
 }
