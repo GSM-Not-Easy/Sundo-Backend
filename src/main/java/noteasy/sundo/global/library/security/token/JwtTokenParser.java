@@ -23,6 +23,10 @@ public class JwtTokenParser {
     public String parseAccessToken(HttpServletRequest request) {
         String header = request.getHeader(JwtProperties.Properties.tokenHeader); // Authorization
 
+        if(header == null) {
+            return null;
+        }
+
         if(header.isBlank()) {
             return null;
         }

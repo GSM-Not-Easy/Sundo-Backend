@@ -26,7 +26,7 @@ public class JwtFilter extends OncePerRequestFilter {
             FilterChain filterChain) throws ServletException, IOException {
         String accessToken = jwtTokenParser.parseAccessToken(request);
 
-        if(!accessToken.isBlank()) {
+        if(accessToken != null && !accessToken.isBlank()) {
             Authentication authentication = jwtTokenParser.authentication(accessToken);
             SecurityContextHolder.clearContext();
             SecurityContext context = SecurityContextHolder.getContext();
