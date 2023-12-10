@@ -1,4 +1,4 @@
-package noteasy.sundo.infrastructure.web.auth;
+package noteasy.sundo.web.auth;
 
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.user.dto.UserDto;
