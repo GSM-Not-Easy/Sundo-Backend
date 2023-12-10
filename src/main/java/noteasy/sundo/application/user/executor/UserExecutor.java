@@ -26,7 +26,7 @@ public class UserExecutor {
         userSupport.signUpTeacher(request);
     }
 
-    public TokenDto.Response login(UserDto.LoginRequest request) {
+    public TokenDto.Response executeLogin(UserDto.LoginRequest request) {
         TokenDto.Response result = userSupport.login(request);
         return result;
     }
