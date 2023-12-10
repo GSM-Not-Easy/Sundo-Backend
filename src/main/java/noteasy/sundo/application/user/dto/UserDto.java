@@ -14,6 +14,19 @@ import javax.validation.constraints.NotNull;
 
 public class UserDto {
 
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class LoginRequest {
+
+        @Email
+        @NotBlank
+        private String email;
+
+        @NotBlank
+        private String password;
+    }
+
 
     @Getter
     @NoArgsConstructor

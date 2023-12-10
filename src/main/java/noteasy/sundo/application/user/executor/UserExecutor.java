@@ -1,6 +1,7 @@
 package noteasy.sundo.application.user.executor;
 
 import lombok.RequiredArgsConstructor;
+import noteasy.sundo.application.auth.dto.TokenDto;
 import noteasy.sundo.application.user.dto.UserDto;
 import noteasy.sundo.application.user.support.UserSupport;
 import org.springframework.stereotype.Component;
@@ -23,5 +24,10 @@ public class UserExecutor {
     public void executeTeacherSignUp(UserDto.TeacherSignUpRequest request) {
         userSupport.signUpValidate(request.getEmail());
         userSupport.signUpTeacher(request);
+    }
+
+    public TokenDto.Response login(UserDto.LoginRequest request) {
+        TokenDto.Response result = userSupport.login(request);
+        return result;
     }
 }

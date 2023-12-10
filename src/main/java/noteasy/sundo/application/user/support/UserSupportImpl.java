@@ -1,8 +1,10 @@
 package noteasy.sundo.application.user.support;
 
 import lombok.RequiredArgsConstructor;
+import noteasy.sundo.application.auth.dto.TokenDto;
 import noteasy.sundo.application.user.dto.UserDto;
 import noteasy.sundo.global.error.GlobalException;
+import noteasy.sundo.global.library.security.token.JwtTokenGenerator;
 import noteasy.sundo.queryfactory.persistmodel.classroom.ClassRoom;
 import noteasy.sundo.queryfactory.persistmodel.classroom.manager.ClassRoomPersistenceManager;
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
@@ -26,6 +28,8 @@ public class UserSupportImpl implements UserSupport {
     private final TeacherPersistenceManager teacherPm;
     private final ClassRoomPersistenceManager classRoomPm;
     private final PasswordEncoder encoder;
+
+    private final JwtTokenGenerator jwtTokenGenerator;
 
     @Override
     public void save(User user) {
@@ -109,6 +113,19 @@ public class UserSupportImpl implements UserSupport {
                 .build();
 
         studentPm.save(student);
+    }
+
+    @Override
+    public TokenDto.Response login(UserDto.LoginRequest request) {
+        User user = userPm.findByEmail(request.getEmail())
+                .orElseThrow(() -> new GlobalException("Not Found User In Login", HttpStatus.NOT_FOUND));
+
+        if(!encoder.matches(user.getPassword(), request.getPassword())) {
+            throw new GlobalException("Password is not matched", HttpStatus.UNAUTHORIZED);
+        }
+
+        TokenDto.Response tokenResult = jwtTokenGenerator.generate(user.getId(), user.getAuthority());
+        return tokenResult;
     }
 
 }
