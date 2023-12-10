@@ -1,0 +1,46 @@
+### 1. 학생 회원가입
+POST {{sundo-api}}/auth/student
+Content-Type: application/json
+
+{
+    "email": "s22043@gsm.hs.kr",
+    "password": "hope1234!",
+    "name": "김희망",
+    "grade": 2,
+    "classNum": 4,
+    "number": 6
+}
+
+### 2. 선생님 회원가입
+POST {{sundo-api}}/auth/teacher
+Content-Type: application/json
+
+{
+    "email": "s22044@gsm.hs.kr",
+    "password": "hope1234!",
+    "subject": "PE",
+    "name": "김희망티쳐",
+    "isHomeRoom": true,
+    "grade": 2,
+    "classNum": 4
+}
+
+### 3. 로그인, 그리고 토큰을 저장한다.
+POST {{sundo-api}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "s22043@gsm.hs.kr",
+    "password": "hope1234!"
+}
+
+> {%
+client.test("Validate", function() {
+client.assert(response.status === 200, "Response status is not 200");
+client.assert(response.contentType.mimeType === "application/json", "Expected 'application/json'");
+client.assert(response.body.accessToken.trim().length > 0);
+});
+
+client.log(response.body.accessToken);
+client.global.set("access_token",response.body.accessToken)
+%}
