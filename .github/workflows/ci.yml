@@ -54,4 +54,4 @@ jobs:
         shell: bash
 
       - name: Run build with Gradle wrapper
-        run: ./gradlew build
+        run: ./gradlew clean build
