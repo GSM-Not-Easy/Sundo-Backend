@@ -27,6 +27,12 @@ spring:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
 
+  data:
+    mongodb:
+      host: ${MONGO_HOST:localhost}
+      port: 27017
+      databse: ${MONGO_DB_NAME:sundo}
+
 jwt:
   accessSecret: ${ACCESS_SECRET:qwertyuiopasdfghjklzxcvbnm12345678901234567890}
   refreshSecret: ${REFRESH_SECRET:poiuytrewqlkjhgfdsamnbvcxz12345678901234567890}
