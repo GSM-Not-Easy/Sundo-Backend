@@ -22,7 +22,7 @@ public class UserQueryFactory implements BaseQueryFactory<User, Long>, UserQuery
      * @return Optional<User>
      */
     @Override
-    public Optional<User> findById(Long id) {
+    public Optional<User> queryById(Long id) {
         var result = queryFactory.selectFrom(user)
                 .where(user.isDeleted.isFalse().and(user.id.eq(id)))
                 .fetchOne();
@@ -50,7 +50,7 @@ public class UserQueryFactory implements BaseQueryFactory<User, Long>, UserQuery
     }
 
     @Override
-    public void delete(User entity) {
+    public void softDelete(User entity) {
         queryFactory.update(user)
                 .where(user.id.eq(entity.getId()))
                 .set(user.isDeleted, true)
@@ -58,7 +58,7 @@ public class UserQueryFactory implements BaseQueryFactory<User, Long>, UserQuery
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void softDeleteById(Long id) {
         queryFactory.update(user)
                 .where(user.id.eq(id))
                 .set(user.isDeleted, true)

@@ -17,7 +17,7 @@ public class TeacherQueryFactory implements BaseQueryFactory<Teacher, Long> {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Optional<Teacher> findById(Long id) {
+    public Optional<Teacher> queryById(Long id) {
         var result = queryFactory.selectFrom(teacher)
                 .where(teacher.isDeleted.isFalse().and(teacher.id.eq(id)))
                 .fetchOne();
@@ -26,7 +26,7 @@ public class TeacherQueryFactory implements BaseQueryFactory<Teacher, Long> {
     }
 
     @Override
-    public void delete(Teacher entity) {
+    public void softDelete(Teacher entity) {
         queryFactory.update(teacher)
                 .where(teacher.isDeleted.isFalse().and(teacher.id.eq(entity.getId())))
                 .set(teacher.isDeleted, false)
@@ -34,7 +34,7 @@ public class TeacherQueryFactory implements BaseQueryFactory<Teacher, Long> {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void softDeleteById(Long id) {
         queryFactory.update(teacher)
                 .where(teacher.isDeleted.isFalse().and(teacher.id.eq(id)))
                 .set(teacher.isDeleted, false)

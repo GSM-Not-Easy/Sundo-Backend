@@ -17,7 +17,7 @@ public class ClassRoomQueryFactory implements BaseQueryFactory<ClassRoom, Long>,
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Optional<ClassRoom> findById(Long id) {
+    public Optional<ClassRoom> queryById(Long id) {
         var result = queryFactory.selectFrom(classRoom)
                 .where(classRoom.isDeleted.isFalse().and(classRoom.id.eq(id)))
                 .fetchOne();
@@ -27,14 +27,14 @@ public class ClassRoomQueryFactory implements BaseQueryFactory<ClassRoom, Long>,
     }
 
     @Override
-    public void delete(ClassRoom entity) {
+    public void softDelete(ClassRoom entity) {
         queryFactory.update(classRoom)
                 .where(classRoom.isDeleted.isFalse().and(classRoom.id.eq(entity.getId())))
                 .execute();
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void softDeleteById(Long id) {
         queryFactory.update(classRoom)
                 .where(classRoom.isDeleted.isFalse().and(classRoom.id.eq(id)))
                 .execute();
