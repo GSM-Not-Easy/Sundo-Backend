@@ -2,6 +2,7 @@ package noteasy.sundo.queryfactory.persistmodel.portfolio;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
 
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
 public class Portfolio {
 
     @Id
