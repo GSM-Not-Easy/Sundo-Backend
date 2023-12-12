@@ -27,7 +27,7 @@ public class PortfolioQueryFactory implements BaseQueryFactory<Portfolio, Long>,
     }
 
     @Override
-    public void softDelete(Portfolio entity) {
+    public void delete(Portfolio entity) {
         queryFactory.update(portfolio)
                 .where(portfolio.isDeleted.isFalse().and(portfolio.id.eq(entity.getId())))
                 .set(portfolio.isDeleted, true)
@@ -35,7 +35,7 @@ public class PortfolioQueryFactory implements BaseQueryFactory<Portfolio, Long>,
     }
 
     @Override
-    public void softDeleteById(Long id) {
+    public void deleteById(Long id) {
         queryFactory.update(portfolio)
                 .where(portfolio.isDeleted.isFalse().and(portfolio.id.eq(id)))
                 .set(portfolio.isDeleted, true)

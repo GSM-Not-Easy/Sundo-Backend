@@ -27,14 +27,14 @@ public class ClassRoomQueryFactory implements BaseQueryFactory<ClassRoom, Long>,
     }
 
     @Override
-    public void softDelete(ClassRoom entity) {
+    public void delete(ClassRoom entity) {
         queryFactory.update(classRoom)
                 .where(classRoom.isDeleted.isFalse().and(classRoom.id.eq(entity.getId())))
                 .execute();
     }
 
     @Override
-    public void softDeleteById(Long id) {
+    public void deleteById(Long id) {
         queryFactory.update(classRoom)
                 .where(classRoom.isDeleted.isFalse().and(classRoom.id.eq(id)))
                 .execute();

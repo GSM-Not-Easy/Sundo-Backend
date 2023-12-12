@@ -50,7 +50,7 @@ public class UserQueryFactory implements BaseQueryFactory<User, Long>, UserQuery
     }
 
     @Override
-    public void softDelete(User entity) {
+    public void delete(User entity) {
         queryFactory.update(user)
                 .where(user.id.eq(entity.getId()))
                 .set(user.isDeleted, true)
@@ -58,7 +58,7 @@ public class UserQueryFactory implements BaseQueryFactory<User, Long>, UserQuery
     }
 
     @Override
-    public void softDeleteById(Long id) {
+    public void deleteById(Long id) {
         queryFactory.update(user)
                 .where(user.id.eq(id))
                 .set(user.isDeleted, true)

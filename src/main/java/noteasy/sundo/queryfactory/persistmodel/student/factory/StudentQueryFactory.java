@@ -28,7 +28,7 @@ public class StudentQueryFactory implements BaseQueryFactory<Student, Long>, Stu
     }
 
     @Override
-    public void softDelete(Student entity) {
+    public void delete(Student entity) {
         queryFactory.update(student)
                 .where(student.isDeleted.isFalse().and(student.id.eq(entity.getId())))
                 .set(student.isDeleted, true)
@@ -36,7 +36,7 @@ public class StudentQueryFactory implements BaseQueryFactory<Student, Long>, Stu
     }
 
     @Override
-    public void softDeleteById(Long id) {
+    public void deleteById(Long id) {
         queryFactory.update(student)
                 .where(student.isDeleted.isFalse().and(student.id.eq(id)))
                 .set(student.isDeleted, true)

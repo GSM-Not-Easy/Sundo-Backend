@@ -9,7 +9,6 @@ import noteasy.sundo.queryfactory.persistmodel.portfolio.manager.PortfolioPersis
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
 import noteasy.sundo.queryfactory.persistmodel.student.manager.StudentPersistenceManager;
 import noteasy.sundo.queryfactory.persistmodel.user.User;
-import noteasy.sundo.queryfactory.persistmodel.user.manager.UserPersistenceManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

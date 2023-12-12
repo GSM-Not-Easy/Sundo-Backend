@@ -10,6 +10,6 @@ import java.util.Optional;
  */
 public interface BaseQueryFactory<T, ID> {
     Optional<T> queryById(ID id);
-    void softDelete(T t);
-    void softDeleteById(ID id);
+    void delete(T t);
+    void deleteById(ID id);
 }
