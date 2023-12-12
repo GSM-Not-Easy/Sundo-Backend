@@ -22,7 +22,7 @@ public class UserQueryFactory implements BaseQueryFactory<User, Long>, UserQuery
      * @return Optional<User>
      */
     @Override
-    public Optional<User> findById(Long id) {
+    public Optional<User> queryById(Long id) {
         var result = queryFactory.selectFrom(user)
                 .where(user.isDeleted.isFalse().and(user.id.eq(id)))
                 .fetchOne();

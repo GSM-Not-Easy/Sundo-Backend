@@ -17,7 +17,7 @@ public class ClassRoomQueryFactory implements BaseQueryFactory<ClassRoom, Long>,
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Optional<ClassRoom> findById(Long id) {
+    public Optional<ClassRoom> queryById(Long id) {
         var result = queryFactory.selectFrom(classRoom)
                 .where(classRoom.isDeleted.isFalse().and(classRoom.id.eq(id)))
                 .fetchOne();

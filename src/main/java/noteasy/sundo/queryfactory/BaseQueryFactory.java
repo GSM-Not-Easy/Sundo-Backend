@@ -9,7 +9,7 @@ import java.util.Optional;
  * QueryFactory를 구현할 때 Select, Delete 구문을 추가하게 강제합니다.
  */
 public interface BaseQueryFactory<T, ID> {
-    Optional<T> findById(ID id);
+    Optional<T> queryById(ID id);
     void delete(T t);
     void deleteById(ID id);
 }

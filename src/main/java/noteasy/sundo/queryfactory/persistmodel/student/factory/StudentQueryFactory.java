@@ -4,6 +4,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.queryfactory.BaseQueryFactory;
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
+import noteasy.sundo.queryfactory.persistmodel.user.User;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -13,12 +14,12 @@ import static noteasy.sundo.queryfactory.persistmodel.student.QStudent.*;
 
 @Component
 @RequiredArgsConstructor
-public class StudentQueryFactory implements BaseQueryFactory<Student, Long> {
+public class StudentQueryFactory implements BaseQueryFactory<Student, Long>, StudentQueryFactoryNeed {
 
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Optional<Student> findById(Long id) {
+    public Optional<Student> queryById(Long id) {
         var result = queryFactory.selectFrom(student)
                 .where(student.isDeleted.isFalse().and(student.id.eq(id)))
                 .fetchOne();
@@ -40,5 +41,14 @@ public class StudentQueryFactory implements BaseQueryFactory<Student, Long> {
                 .where(student.isDeleted.isFalse().and(student.id.eq(id)))
                 .set(student.isDeleted, true)
                 .execute();
+    }
+
+    @Override
+    public Optional<Student> findByUser(User user) {
+        var result = queryFactory.selectFrom(student)
+                .where(student.isDeleted.isFalse().and(student.user.id.eq(user.getId())))
+                .fetchOne();
+
+        return Optional.ofNullable(result);
     }
 }

@@ -17,7 +17,7 @@ public class TeacherQueryFactory implements BaseQueryFactory<Teacher, Long> {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Optional<Teacher> findById(Long id) {
+    public Optional<Teacher> queryById(Long id) {
         var result = queryFactory.selectFrom(teacher)
                 .where(teacher.isDeleted.isFalse().and(teacher.id.eq(id)))
                 .fetchOne();
