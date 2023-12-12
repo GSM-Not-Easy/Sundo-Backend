@@ -43,7 +43,7 @@ public class PortfolioQueryFactory implements BaseQueryFactory<Portfolio, Long>,
     }
 
     @Override
-    public Boolean existByStudent(Student student) {
+    public Boolean existsByStudent(Student student) {
         var fetchOne = queryFactory.selectOne()
                 .where(portfolio.isDeleted.isFalse().and(portfolio.student.id.eq(student.getId())))
                 .fetchFirst();
