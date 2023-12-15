@@ -11,7 +11,7 @@ public enum Subject {
     SYSTEM_PROGRAM,
     SCREEN_IMPL,
     HARDWARE,
-    NUTRITIONIST,
+    FOOD,
     WEE,
     JOB
 }
