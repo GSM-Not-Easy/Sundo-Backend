@@ -12,7 +12,7 @@ import static noteasy.sundo.queryfactory.persistmodel.teacher.QTeacher.teacher;
 
 @Component
 @RequiredArgsConstructor
-public class TeacherQueryFactory implements BaseQueryFactory<Teacher, Long> {
+public class TeacherRepositoryImpl implements BaseQueryFactory<Teacher, Long> {
 
     private final JPAQueryFactory queryFactory;
 

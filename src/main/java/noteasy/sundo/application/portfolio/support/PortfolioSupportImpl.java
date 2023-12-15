@@ -5,24 +5,24 @@ import noteasy.sundo.application.portfolio.dto.PortfolioDto;
 import noteasy.sundo.global.error.GlobalException;
 import noteasy.sundo.global.library.security.SecurityContextUtil;
 import noteasy.sundo.queryfactory.persistmodel.portfolio.Portfolio;
-import noteasy.sundo.queryfactory.persistmodel.portfolio.manager.PortfolioPersistenceManager;
+import noteasy.sundo.queryfactory.persistmodel.portfolio.manager.PortfolioRepository;
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
-import noteasy.sundo.queryfactory.persistmodel.student.manager.StudentPersistenceManager;
+import noteasy.sundo.queryfactory.persistmodel.student.manager.StudentRepository;
 import noteasy.sundo.queryfactory.persistmodel.user.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class PortfolioSupportImpl implements PortfolioSupport {
 
-    private final StudentPersistenceManager studentPm;
-    private final PortfolioPersistenceManager portfolioPm;
+    private final StudentRepository studentPm;
+    private final PortfolioRepository portfolioPm;
     private final SecurityContextUtil securityContextUtil;
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public void createPortfolio(PortfolioDto.CreatePortfolioRequest request) {
         User currentUser = securityContextUtil.currentUser();
 
@@ -43,5 +43,11 @@ public class PortfolioSupportImpl implements PortfolioSupport {
                 .build();
 
         portfolioPm.save(portfolio);
+    }
+
+    @Override
+    public PortfolioDto.Responses queryAllPortfolio(Integer grade, Integer classNum, String keyword) {
+        List<Portfolio> portfolioList = portfolioPm.search(grade, classNum, keyword);
+        return PortfolioDto.listOf(portfolioList);
     }
 }

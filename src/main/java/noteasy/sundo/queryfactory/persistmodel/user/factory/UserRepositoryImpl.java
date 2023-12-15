@@ -12,7 +12,7 @@ import static noteasy.sundo.queryfactory.persistmodel.user.QUser.user;
 
 @Repository
 @RequiredArgsConstructor
-public class UserQueryFactory implements BaseQueryFactory<User, Long>, UserQueryFactoryNeed{
+public class UserRepositoryImpl implements BaseQueryFactory<User, Long>, UserRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
