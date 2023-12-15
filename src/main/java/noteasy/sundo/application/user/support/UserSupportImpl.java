@@ -8,13 +8,13 @@ import noteasy.sundo.global.library.security.token.JwtTokenGenerator;
 import noteasy.sundo.queryfactory.persistmodel.classroom.ClassRoom;
 import noteasy.sundo.queryfactory.persistmodel.classroom.manager.ClassRoomPersistenceManager;
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
-import noteasy.sundo.queryfactory.persistmodel.student.manager.StudentPersistenceManager;
+import noteasy.sundo.queryfactory.persistmodel.student.manager.StudentRepository;
 import noteasy.sundo.queryfactory.persistmodel.teacher.Teacher;
-import noteasy.sundo.queryfactory.persistmodel.teacher.manager.TeacherPersistenceManager;
+import noteasy.sundo.queryfactory.persistmodel.teacher.manager.TeacherRepository;
 import noteasy.sundo.queryfactory.persistmodel.user.ApproveStatus;
 import noteasy.sundo.queryfactory.persistmodel.user.Authority;
 import noteasy.sundo.queryfactory.persistmodel.user.User;
-import noteasy.sundo.queryfactory.persistmodel.user.manager.UserPersistenceManager;
+import noteasy.sundo.queryfactory.persistmodel.user.manager.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -23,9 +23,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserSupportImpl implements UserSupport {
 
-    private final UserPersistenceManager userPm;
-    private final StudentPersistenceManager studentPm;
-    private final TeacherPersistenceManager teacherPm;
+    private final UserRepository userPm;
+    private final StudentRepository studentPm;
+    private final TeacherRepository teacherPm;
     private final ClassRoomPersistenceManager classRoomPm;
     private final PasswordEncoder encoder;
 

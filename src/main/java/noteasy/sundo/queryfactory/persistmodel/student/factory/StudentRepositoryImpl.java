@@ -5,6 +5,6 @@ import noteasy.sundo.queryfactory.persistmodel.user.User;
 
 import java.util.Optional;
 
-public interface StudentQueryFactoryNeed {
+public interface StudentRepositoryImpl {
     Optional<Student> findByUser(User user);
 }

@@ -17,7 +17,7 @@ import static noteasy.sundo.queryfactory.persistmodel.user.QUser.user;
 
 @Component
 @RequiredArgsConstructor
-public class PortfolioQueryFactory implements BaseQueryFactory<Portfolio, Long>, PortfolioQueryFactoryNeed {
+public class PortfolioRepositoryImpl implements BaseQueryFactory<Portfolio, Long>, PortfolioRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
@@ -56,7 +56,7 @@ public class PortfolioQueryFactory implements BaseQueryFactory<Portfolio, Long>,
     }
 
     /**
-     * portfolio 전체 조회 - Student, User 값을 패치조인으로 가져옵니다.
+     * portfolio 동적 검색 + 전체 조회 - Student, User 값을 패치조인으로 가져옵니다.
      * @return List<Portfolio>
      */
     @Override

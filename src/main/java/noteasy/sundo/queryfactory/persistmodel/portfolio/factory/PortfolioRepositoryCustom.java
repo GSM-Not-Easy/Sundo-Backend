@@ -5,7 +5,7 @@ import noteasy.sundo.queryfactory.persistmodel.student.Student;
 
 import java.util.List;
 
-public interface PortfolioQueryFactoryNeed {
+public interface PortfolioRepositoryCustom {
     Boolean existsByStudent(Student student);
     List<Portfolio> search(Integer grade, Integer classNum, String keyword);
 }

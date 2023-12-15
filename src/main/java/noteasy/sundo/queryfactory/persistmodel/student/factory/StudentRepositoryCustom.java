@@ -14,7 +14,7 @@ import static noteasy.sundo.queryfactory.persistmodel.student.QStudent.*;
 
 @Component
 @RequiredArgsConstructor
-public class StudentQueryFactory implements BaseQueryFactory<Student, Long>, StudentQueryFactoryNeed {
+public class StudentRepositoryCustom implements BaseQueryFactory<Student, Long>, StudentRepositoryImpl {
 
     private final JPAQueryFactory queryFactory;
 

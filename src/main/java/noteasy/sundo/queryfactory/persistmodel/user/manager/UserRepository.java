@@ -2,8 +2,8 @@ package noteasy.sundo.queryfactory.persistmodel.user.manager;
 
 import noteasy.sundo.queryfactory.BaseQueryFactory;
 import noteasy.sundo.queryfactory.persistmodel.user.User;
-import noteasy.sundo.queryfactory.persistmodel.user.factory.UserQueryFactoryNeed;
+import noteasy.sundo.queryfactory.persistmodel.user.factory.UserRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserPersistenceManager extends JpaRepository<User, Long>, BaseQueryFactory<User, Long>, UserQueryFactoryNeed {
+public interface UserRepository extends JpaRepository<User, Long>, BaseQueryFactory<User, Long>, UserRepositoryCustom {
 }
