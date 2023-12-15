@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class PortfolioSupportImpl implements PortfolioSupport {
@@ -46,9 +48,7 @@ public class PortfolioSupportImpl implements PortfolioSupport {
 
     @Override
     public PortfolioDto.Responses queryAllPortfolio() {
-
-
-
-        return null;
+        List<Portfolio> portfolioList = portfolioPm.findAllByIsNotDeleted();
+        return PortfolioDto.listOf(portfolioList);
     }
 }

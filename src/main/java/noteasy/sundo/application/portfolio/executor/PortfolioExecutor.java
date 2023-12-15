@@ -16,4 +16,8 @@ public class PortfolioExecutor {
     public void executeCreatePortfolio(PortfolioDto.CreatePortfolioRequest request) {
         portfolioSupport.createPortfolio(request);
     }
+
+    public PortfolioDto.Responses queryAllPortfolioList() {
+        return portfolioSupport.queryAllPortfolio();
+    }
 }
