@@ -43,4 +43,12 @@ public class PortfolioSupportImpl implements PortfolioSupport {
 
         portfolioPm.save(portfolio);
     }
+
+    @Override
+    public PortfolioDto.Responses queryAllPortfolio() {
+
+
+
+        return null;
+    }
 }
