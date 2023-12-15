@@ -22,7 +22,6 @@ public class PortfolioSupportImpl implements PortfolioSupport {
     private final SecurityContextUtil securityContextUtil;
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public void createPortfolio(PortfolioDto.CreatePortfolioRequest request) {
         User currentUser = securityContextUtil.currentUser();
 
