@@ -5,10 +5,7 @@ import noteasy.sundo.application.portfolio.dto.PortfolioDto;
 import noteasy.sundo.application.portfolio.executor.PortfolioExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -25,8 +22,11 @@ public class PortfolioController {
     }
 
     @GetMapping
-    public ResponseEntity<PortfolioDto.Responses> queryAllPortfolioList() {
-        PortfolioDto.Responses responses = portfolioExecutor.queryAllPortfolioList();
+    public ResponseEntity<PortfolioDto.Responses> queryAllPortfolioList(
+            @RequestParam(defaultValue = "0") Integer grade,
+            @RequestParam(defaultValue = "0") Integer number,
+            @RequestParam(defaultValue = "") String keyword) {
+        PortfolioDto.Responses responses = portfolioExecutor.queryAllPortfolioList(grade, number, keyword);
         return ResponseEntity.ok(responses);
     }
 }

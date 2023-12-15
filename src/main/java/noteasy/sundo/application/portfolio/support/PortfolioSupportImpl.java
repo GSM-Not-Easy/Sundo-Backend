@@ -47,8 +47,8 @@ public class PortfolioSupportImpl implements PortfolioSupport {
     }
 
     @Override
-    public PortfolioDto.Responses queryAllPortfolio() {
-        List<Portfolio> portfolioList = portfolioPm.findAllByIsNotDeleted();
+    public PortfolioDto.Responses queryAllPortfolio(Integer grade, Integer classNum, String keyword) {
+        List<Portfolio> portfolioList = portfolioPm.search(grade, classNum, keyword);
         return PortfolioDto.listOf(portfolioList);
     }
 }

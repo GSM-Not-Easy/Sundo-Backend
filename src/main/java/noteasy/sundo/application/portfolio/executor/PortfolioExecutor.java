@@ -17,7 +17,7 @@ public class PortfolioExecutor {
         portfolioSupport.createPortfolio(request);
     }
 
-    public PortfolioDto.Responses queryAllPortfolioList() {
-        return portfolioSupport.queryAllPortfolio();
+    public PortfolioDto.Responses queryAllPortfolioList(Integer grade, Integer classNum, String keyword) {
+        return portfolioSupport.queryAllPortfolio(grade, classNum, keyword);
     }
 }

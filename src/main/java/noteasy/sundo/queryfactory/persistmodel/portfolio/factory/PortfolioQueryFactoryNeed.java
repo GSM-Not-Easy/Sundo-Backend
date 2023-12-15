@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PortfolioQueryFactoryNeed {
     Boolean existsByStudent(Student student);
-    List<Portfolio> findAllByIsNotDeleted();
+    List<Portfolio> search(Integer grade, Integer classNum, String keyword);
 }

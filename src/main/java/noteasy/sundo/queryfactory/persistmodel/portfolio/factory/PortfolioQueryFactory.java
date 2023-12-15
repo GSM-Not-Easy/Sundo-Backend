@@ -1,5 +1,6 @@
 package noteasy.sundo.queryfactory.persistmodel.portfolio.factory;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.queryfactory.BaseQueryFactory;
@@ -59,13 +60,31 @@ public class PortfolioQueryFactory implements BaseQueryFactory<Portfolio, Long>,
      * @return List<Portfolio>
      */
     @Override
-    public List<Portfolio> findAllByIsNotDeleted() {
+    public List<Portfolio> search(Integer grade, Integer classNum, String keyword) {
         return queryFactory.selectFrom(portfolio)
-                .where(portfolio.isDeleted.isFalse())
+                .where(
+                        portfolio.isDeleted.isFalse(),
+                        gradeEq(grade),
+                        classNumEq(classNum),
+                        keywordLike(keyword)
+                )
                 .leftJoin(portfolio.student, student)
                 .fetchJoin()
                 .leftJoin(student.user, user)
                 .fetchJoin()
                 .fetch();
     }
+
+    private BooleanExpression gradeEq(Integer grade) {
+        return (grade != 0) ? portfolio.student.grade.eq(grade) : null;
+    }
+
+    private BooleanExpression classNumEq(Integer classNum) {
+        return (classNum != 0) ? portfolio.student.classRoom.classNum.eq(classNum) : null;
+    }
+
+    private BooleanExpression keywordLike(String keyword) {
+        return (!keyword.isEmpty()) ? portfolio.student.user.name.like("%" + keyword + "%") : null;
+    }
+
 }
