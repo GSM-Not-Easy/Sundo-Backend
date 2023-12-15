@@ -107,7 +107,7 @@ public class UserSupportImpl implements UserSupport {
 
         Student student = Student.builder()
                 .user(user)
-                .grade(request.getGrade())
+                .number(request.getNumber())
                 .classRoom(classRoom)
                 .isDeleted(false)
                 .build();

@@ -25,7 +25,7 @@ public class Student {
     private User user;
 
     @Column(nullable = false, columnDefinition = "TINYINT")
-    private Integer grade;
+    private Integer number;
 
     @OneToOne
     @JoinColumn(name = "class_room_id", nullable = false)
