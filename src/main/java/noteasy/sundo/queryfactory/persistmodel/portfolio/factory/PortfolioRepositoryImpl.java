@@ -76,7 +76,7 @@ public class PortfolioRepositoryImpl implements BaseQueryFactory<Portfolio, Long
     }
 
     private BooleanExpression gradeEq(Integer grade) {
-        return (grade != 0) ? portfolio.student.grade.eq(grade) : null;
+        return (grade != 0) ? portfolio.student.classRoom.grade.eq(grade) : null;
     }
 
     private BooleanExpression classNumEq(Integer classNum) {
