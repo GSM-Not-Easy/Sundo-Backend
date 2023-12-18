@@ -12,7 +12,7 @@ import static noteasy.sundo.queryfactory.persistmodel.classroom.QClassRoom.class
 
 @Component
 @RequiredArgsConstructor
-public class ClassRoomQueryFactory implements BaseQueryFactory<ClassRoom, Long>, ClassRoomQueryFactoryNeed {
+public class ClassRoomRepositoryImpl implements BaseQueryFactory<ClassRoom, Long>, ClassRoomRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
