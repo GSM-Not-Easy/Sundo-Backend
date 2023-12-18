@@ -16,7 +16,7 @@ group = 'noteasy'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = "11"
+	sourceCompatibility = "13"
 }
 
 configurations {
@@ -71,7 +71,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-targetCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_13
 
 //querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
