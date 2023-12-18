@@ -16,7 +16,7 @@ group = 'noteasy'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = "13"
+	sourceCompatibility = "11"
 }
 
 configurations {
@@ -54,26 +54,18 @@ dependencies {
 
     //querydsl
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
-    annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-core:${queryDslVersion}" // 한개 더 추가!
 
     // reactive
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
 
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+
 
 }
 
-tasks.named('bootBuildImage') {
-	builder = 'paketobuildpacks/builder-jammy-base:latest'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
-}
-
-targetCompatibility = JavaVersion.VERSION_13
-
-//querydsl 추가 시작
 def querydslDir = "$buildDir/generated/querydsl"
 
 querydsl {
@@ -83,9 +75,13 @@ querydsl {
 sourceSets {
     main.java.srcDir querydslDir
 }
-configurations {
-    querydsl.extendsFrom compileClasspath
-}
-compileQuerydsl {
+compileQuerydsl{
     options.annotationProcessorPath = configurations.querydsl
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
 }

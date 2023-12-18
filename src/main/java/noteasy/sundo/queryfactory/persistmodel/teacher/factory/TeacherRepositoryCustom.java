@@ -6,5 +6,5 @@ import noteasy.sundo.queryfactory.persistmodel.teacher.Teacher;
 import java.util.Optional;
 
 public interface TeacherRepositoryCustom {
-    Optional<Teacher> findByStudentAndSubject(Subject subject);
+    Optional<Teacher> findBySubject(Subject subject);
 }

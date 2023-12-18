@@ -27,7 +27,7 @@ public class WeeSupportImpl implements WeeSupport {
         var student = studentRepository.findByUser(currentUser)
                 .orElseThrow(() -> new GlobalException("Not Found Student..", HttpStatus.NOT_FOUND));;
 
-        var wee = teacherRepository.findByStudentAndSubject(Subject.WEE)
+        var wee = teacherRepository.findBySubject(Subject.WEE)
                 .orElseThrow(() -> new GlobalException("Not Found Wee Class Teacher..", HttpStatus.NOT_FOUND));
 
         if(chatRoomRepository.existsByStudentIdAndWeeId(student.getId(), wee.getId())) {

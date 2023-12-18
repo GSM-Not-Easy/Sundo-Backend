@@ -27,7 +27,7 @@ public class TeacherRepositoryImpl implements BaseQueryFactory<Teacher, Long>, T
     }
 
     @Override
-    public Optional<Teacher> findByStudentAndSubject(Subject subject) {
+    public Optional<Teacher> findBySubject(Subject subject) {
         var result = queryFactory.selectFrom(teacher)
                 .where(teacher.isDeleted.isFalse().and(teacher.subject.eq(subject)))
                 .fetchOne();
