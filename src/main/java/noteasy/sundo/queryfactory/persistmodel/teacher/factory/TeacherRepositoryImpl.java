@@ -3,6 +3,7 @@ package noteasy.sundo.queryfactory.persistmodel.teacher.factory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.queryfactory.BaseQueryFactory;
+import noteasy.sundo.queryfactory.persistmodel.teacher.Subject;
 import noteasy.sundo.queryfactory.persistmodel.teacher.Teacher;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import static noteasy.sundo.queryfactory.persistmodel.teacher.QTeacher.teacher;
 
 @Component
 @RequiredArgsConstructor
-public class TeacherRepositoryImpl implements BaseQueryFactory<Teacher, Long> {
+public class TeacherRepositoryImpl implements BaseQueryFactory<Teacher, Long>, TeacherRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
@@ -20,6 +21,15 @@ public class TeacherRepositoryImpl implements BaseQueryFactory<Teacher, Long> {
     public Optional<Teacher> queryById(Long id) {
         var result = queryFactory.selectFrom(teacher)
                 .where(teacher.isDeleted.isFalse().and(teacher.id.eq(id)))
+                .fetchOne();
+
+        return Optional.ofNullable(result);
+    }
+
+    @Override
+    public Optional<Teacher> findBySubject(Subject subject) {
+        var result = queryFactory.selectFrom(teacher)
+                .where(teacher.isDeleted.isFalse().and(teacher.subject.eq(subject)))
                 .fetchOne();
 
         return Optional.ofNullable(result);

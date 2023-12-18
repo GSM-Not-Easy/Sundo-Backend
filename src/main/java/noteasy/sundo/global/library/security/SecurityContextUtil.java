@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class SecurityContextUtil {
 
-    private final UserRepository userPm;
+    private final UserRepository userRepository;
 
     public User currentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         if(principal instanceof Long) {
-            return userPm.queryById((Long) principal)
+            return userRepository.queryById((Long) principal)
                     .orElseThrow(() -> new GlobalException("Current User Not Found", HttpStatus.NOT_FOUND));
         } else {
             throw new GlobalException("Principal is Not Valid", HttpStatus.UNAUTHORIZED);
