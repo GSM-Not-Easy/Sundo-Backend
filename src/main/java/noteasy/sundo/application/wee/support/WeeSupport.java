@@ -1,5 +1,5 @@
 package noteasy.sundo.application.wee.support;
 
-public interface ChatRoomSupport {
+public interface WeeSupport {
     void createChatRoom();
 }
