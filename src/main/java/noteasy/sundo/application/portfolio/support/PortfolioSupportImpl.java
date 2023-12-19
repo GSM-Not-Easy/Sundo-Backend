@@ -18,19 +18,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PortfolioSupportImpl implements PortfolioSupport {
 
-    private final StudentRepository studentPm;
-    private final PortfolioRepository portfolioPm;
+    private final StudentRepository studentRepository;
+    private final PortfolioRepository portfolioRepository;
     private final SecurityContextUtil securityContextUtil;
 
     @Override
     public void createPortfolio(PortfolioDto.CreatePortfolioRequest request) {
         User currentUser = securityContextUtil.currentUser();
 
-        Student student = studentPm.findByUser(currentUser)
+        Student student = studentRepository.findByUser(currentUser)
                 .orElseThrow(() -> new GlobalException("Student Not Found", HttpStatus.NOT_FOUND));
 
 
-        if(portfolioPm.existsByStudent(student)) {
+        if(portfolioRepository.existsByStudent(student)) {
             throw new GlobalException("Forbidden to create the Portfolio", HttpStatus.FORBIDDEN);
         }
 
@@ -39,15 +39,34 @@ public class PortfolioSupportImpl implements PortfolioSupport {
                 .introduce(request.getIntroduce())
                 .githubLink(request.getGithubLink())
                 .portfolioLink(request.getPortfolioLink())
+                .blogLink(request.getBlogLink())
                 .isDeleted(false)
                 .build();
 
-        portfolioPm.save(portfolio);
+        portfolioRepository.save(portfolio);
     }
 
     @Override
     public PortfolioDto.Responses queryAllPortfolio(Integer grade, Integer classNum, String keyword) {
-        List<Portfolio> portfolioList = portfolioPm.search(grade, classNum, keyword);
+        List<Portfolio> portfolioList = portfolioRepository.search(grade, classNum, keyword);
         return PortfolioDto.listOf(portfolioList);
+    }
+
+    @Override
+    public PortfolioDto.Detail queryPortfolioDetail(Long id) {
+        Portfolio portfolio = portfolioRepository.queryById(id)
+                .orElseThrow(() -> new GlobalException("Not Found Portfolio", HttpStatus.NOT_FOUND));
+
+        return PortfolioDto.detailOf(portfolio);
+    }
+
+    @Override
+    public void updatePortfolio(PortfolioDto.UpdatePortfolioRequest request) {
+
+    }
+
+    @Override
+    public void deletePortfolio(Long id) {
+
     }
 }

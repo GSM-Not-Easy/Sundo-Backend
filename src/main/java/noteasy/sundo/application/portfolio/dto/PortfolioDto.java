@@ -24,6 +24,27 @@ public class PortfolioDto {
 
         @Nullable
         private String portfolioLink;
+
+        @Nullable
+        private String blogLink;
+    }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UpdatePortfolioRequest {
+
+        @NotBlank
+        private String introduce;
+
+        @Nullable
+        private String githubLink;
+
+        @Nullable
+        private String portfolioLink;
+
+        @Nullable
+        private String blogLink;
     }
 
 
@@ -73,6 +94,8 @@ public class PortfolioDto {
         private final String githubLink;
 
         private final String portfolioLink;
+
+        private final String blogLink;
     }
 
     public static Response of(Portfolio portfolio) {
@@ -101,6 +124,7 @@ public class PortfolioDto {
                 .introduce(portfolio.getIntroduce())
                 .githubLink(portfolio.getGithubLink())
                 .portfolioLink(portfolio.getPortfolioLink())
+                .blogLink(portfolio.getBlogLink())
                 .build();
     }
 

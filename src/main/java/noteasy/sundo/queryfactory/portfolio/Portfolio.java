@@ -37,6 +37,9 @@ public class Portfolio {
     @Column(name = "portfolio_link")
     private String portfolioLink;
 
+    @Column(name = "blog_link")
+    private String blogLink;
+
     @Column(name = "is_deleted")
     @Builder.Default
     private boolean isDeleted = Boolean.FALSE;
