@@ -2,6 +2,7 @@ package noteasy.sundo.web.wee;
 
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.wee.dto.ChatDto;
+import noteasy.sundo.application.wee.dto.ChatRoomDto;
 import noteasy.sundo.application.wee.executor.WeeExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,6 +36,12 @@ public class WeeController {
     public ResponseEntity<Flux<ChatDto.Response>> queryMessage(@PathVariable("room_id") Long roomId) {
         Flux<ChatDto.Response> flux = weeExecutor.executeQueryMessage(roomId);
         return ResponseEntity.ok(flux.subscribeOn(Schedulers.boundedElastic()));
+    }
+
+    @GetMapping("/room/my")
+    public ResponseEntity<ChatRoomDto.Response> queryMyChatRoom() {
+        ChatRoomDto.Response response = weeExecutor.executeQueryMyChatRoom();
+        return ResponseEntity.ok(response);
     }
 
 }

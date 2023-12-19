@@ -2,6 +2,7 @@ package noteasy.sundo.application.wee.executor;
 
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.wee.dto.ChatDto;
+import noteasy.sundo.application.wee.dto.ChatRoomDto;
 import noteasy.sundo.application.wee.support.WeeSupport;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,5 +26,9 @@ public class WeeExecutor {
 
     public Flux<ChatDto.Response> executeQueryMessage(Long roomId) {
         return weeSupport.queryMessage(roomId);
+    }
+
+    public ChatRoomDto.Response executeQueryMyChatRoom() {
+        return weeSupport.queryMyChatRoom();
     }
 }
