@@ -22,7 +22,6 @@ import org.springframework.web.cors.CorsUtils;
 public class SecurityConfig {
 
     private final JwtTokenParser jwtTokenParser;
-    private final PortfolioRepository portfolioRepository;
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
