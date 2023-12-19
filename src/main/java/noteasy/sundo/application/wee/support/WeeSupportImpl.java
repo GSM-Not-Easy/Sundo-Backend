@@ -17,8 +17,8 @@ import noteasy.sundo.queryfactory.persistmodel.wee.MessageDirection;
 import noteasy.sundo.queryfactory.persistmodel.wee.repository.ChatMessageRepository;
 import noteasy.sundo.queryfactory.persistmodel.wee.repository.ChatRoomRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
@@ -107,6 +107,34 @@ public class WeeSupportImpl implements WeeSupport {
         }
 
     }
+
+    @Override
+    public Flux<ChatDto.Response> queryMessage(Long roomId) {
+
+        User currentUser = contextUtil.currentUser();
+
+        ChatRoom chatRoom = chatRoomRepository.findById(roomId)
+                .orElseThrow(() -> new GlobalException("Not Found ChatRoom Repository", HttpStatus.NOT_FOUND));
+
+
+        if(!(chatRoom.getStudentId().equals(currentUser.getId()) || chatRoom.getWeeId().equals(currentUser.getId()))) {
+            throw new GlobalException("Forbidden to Access ChatRoom", HttpStatus.FORBIDDEN);
+        }
+
+        Flux<ChatDto.Response> chatFlux = chatMessageRepository.findByRoomIdSortedByCreatedAt(roomId)
+                .map(message -> convertChatMessage(message, chatRoom));
+
+        return chatFlux;
+    }
+
+    private ChatDto.Response convertChatMessage(ChatMessage chatMessage, ChatRoom chatRoom) {
+        if(chatMessage.getMessageDirection() == MessageDirection.ToStudent) {
+            return ChatDto.of(chatMessage, chatRoom.getStudentId(), chatRoom.getWeeId());
+        } else {
+            return ChatDto.of(chatMessage, chatRoom.getWeeId(), chatRoom.getStudentId());
+        }
+    }
+
     private ChatMessage createChatMessage(Long roomId, String message, MessageDirection messageDirection) {
         return ChatMessage.builder()
                 .roomId(roomId)

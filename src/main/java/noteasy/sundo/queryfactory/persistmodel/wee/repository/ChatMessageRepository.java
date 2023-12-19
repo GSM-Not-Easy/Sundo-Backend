@@ -10,6 +10,6 @@ public interface ChatMessageRepository extends ReactiveMongoRepository<ChatMessa
 
     @Tailable
     @Query("{ roomId : ?0 }")
-    Flux<ChatMessage> findMessagesByRoomIdSortedByCreatedAt(String roomId);
+    Flux<ChatMessage> findByRoomIdSortedByCreatedAt(Long roomId);
 
 }
