@@ -1,25 +1,38 @@
 package noteasy.sundo.application.wee.support;
 
 import lombok.RequiredArgsConstructor;
+import noteasy.sundo.application.wee.dto.ChatDto;
 import noteasy.sundo.global.error.GlobalException;
 import noteasy.sundo.global.library.security.SecurityContextUtil;
+import noteasy.sundo.queryfactory.persistmodel.student.Student;
 import noteasy.sundo.queryfactory.persistmodel.student.manager.StudentRepository;
 import noteasy.sundo.queryfactory.persistmodel.teacher.Subject;
+import noteasy.sundo.queryfactory.persistmodel.teacher.Teacher;
 import noteasy.sundo.queryfactory.persistmodel.teacher.manager.TeacherRepository;
 import noteasy.sundo.queryfactory.persistmodel.user.User;
+import noteasy.sundo.queryfactory.persistmodel.user.manager.UserRepository;
+import noteasy.sundo.queryfactory.persistmodel.wee.ChatMessage;
 import noteasy.sundo.queryfactory.persistmodel.wee.ChatRoom;
+import noteasy.sundo.queryfactory.persistmodel.wee.MessageDirection;
+import noteasy.sundo.queryfactory.persistmodel.wee.repository.ChatMessageRepository;
 import noteasy.sundo.queryfactory.persistmodel.wee.repository.ChatRoomRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
+
+import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
 public class WeeSupportImpl implements WeeSupport {
 
     private final ChatRoomRepository chatRoomRepository;
+    private final ChatMessageRepository chatMessageRepository;
     private final TeacherRepository teacherRepository;
     private final StudentRepository studentRepository;
     private final SecurityContextUtil contextUtil;
+    private final UserRepository userRepository;
 
     @Override
     public void createChatRoom() {
@@ -41,6 +54,72 @@ public class WeeSupportImpl implements WeeSupport {
                 .build();
 
         chatRoomRepository.save(chatRoom);
+    }
+
+    @Override
+    public Mono<ChatDto.Response> sendMessage(Long roomId, ChatDto.Request request) {
+        User currentUser = contextUtil.currentUser();
+        Long toUserId = request.getTo();
+
+        ChatRoom chatRoom = chatRoomRepository.findById(roomId)
+                .orElseThrow(() -> new GlobalException("Not Found Wee Chat Room..", HttpStatus.NOT_FOUND));
+
+        User toUser = userRepository.queryById(toUserId)
+                .orElseThrow(() -> new GlobalException("ToUser Not Found Exception", HttpStatus.NOT_FOUND));
+
+        if(currentUser.getId().equals(toUserId)) {
+            throw new GlobalException("Sender And Receiver is same user", HttpStatus.BAD_REQUEST);
+        }
+
+        /**
+         * MessageDirection을 통해서 메세지 sender, reciever를 결정한다.
+         */
+        if(request.getMessageDirection() == MessageDirection.ToStudent) {
+            Student student = studentRepository.findByUser(toUser)
+                    .orElseThrow(() -> new GlobalException("Student Not Found Exception", HttpStatus.NOT_FOUND));
+
+            validateChatRoomAndStudent(chatRoom, toUserId);
+
+            ChatMessage chatMessage = createChatMessage(
+                    roomId,
+                    request.getMessage(),
+                    MessageDirection.ToStudent
+                    );
+
+            chatMessageRepository.save(chatMessage);
+
+            return Mono.just(ChatDto.of(chatMessage, toUserId, currentUser.getId()));
+        } else {
+            Teacher wee = teacherRepository.findBySubject(Subject.WEE)
+                    .orElseThrow(() -> new GlobalException("Not Found Wee Class Teacher..", HttpStatus.NOT_FOUND));
+
+            validateChatRoomAndStudent(chatRoom, currentUser.getId());
+
+            ChatMessage chatMessage = createChatMessage(
+                    roomId,
+                    request.getMessage(),
+                    MessageDirection.ToWee
+            );
+
+            chatMessageRepository.save(chatMessage);
+
+            return Mono.just(ChatDto.of(chatMessage, toUserId, currentUser.getId()));
+        }
 
     }
+    private ChatMessage createChatMessage(Long roomId, String message, MessageDirection messageDirection) {
+        return ChatMessage.builder()
+                .roomId(roomId)
+                .message(message)
+                .messageDirection(messageDirection)
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
+
+    private void validateChatRoomAndStudent(ChatRoom chatRoom, Long studentId) {
+        if(!chatRoom.getStudentId().equals(studentId)) {
+            throw new GlobalException("ChatRoom's Student is not matched Student who send a request in Wee", HttpStatus.FORBIDDEN);
+        }
+    }
+
 }
