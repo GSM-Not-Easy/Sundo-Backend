@@ -31,4 +31,8 @@ public class WeeExecutor {
     public ChatRoomDto.Response executeQueryMyChatRoom() {
         return weeSupport.queryMyChatRoom();
     }
+
+    public ChatRoomDto.Responses executeQueryAllChatRoom() {
+        return weeSupport.queryAllChatRoom();
+    }
 }

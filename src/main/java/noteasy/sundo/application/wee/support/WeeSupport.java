@@ -12,5 +12,5 @@ public interface WeeSupport {
     Mono<ChatDto.Response> sendMessage(Long roomId, ChatDto.Request request);
     Flux<ChatDto.Response> queryMessage(Long roomId);
     ChatRoomDto.Response queryMyChatRoom();
-    List<ChatRoomDto.Response> queryAllChatRoom();
+    ChatRoomDto.Responses queryAllChatRoom();
 }

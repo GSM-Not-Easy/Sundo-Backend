@@ -143,7 +143,7 @@ public class WeeSupportImpl implements WeeSupport {
     }
 
     @Override
-    public List<ChatRoomDto.Response> queryAllChatRoom() {
+    public ChatRoomDto.Responses queryAllChatRoom() {
         User currentUser = contextUtil.currentUser();
 
         Teacher wee = teacherRepository.findBySubject(Subject.WEE)

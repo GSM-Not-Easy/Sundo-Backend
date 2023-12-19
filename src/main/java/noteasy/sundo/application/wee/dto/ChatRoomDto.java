@@ -39,10 +39,11 @@ public class ChatRoomDto {
                 .build();
     }
 
-    public static List<Response> listOf(Map<ChatRoom, String> chatRoomMap) {
+    public static Responses listOf(Map<ChatRoom, String> chatRoomMap) {
         // key: chatRoom, value: studentName
-        return chatRoomMap.entrySet().stream()
+        List<Response> responses = chatRoomMap.entrySet().stream()
                 .map(entry -> ChatRoomDto.of((entry.getKey()), entry.getValue()))
                 .collect(Collectors.toList());
-    }
+
+        return new Responses(responses);
 }
