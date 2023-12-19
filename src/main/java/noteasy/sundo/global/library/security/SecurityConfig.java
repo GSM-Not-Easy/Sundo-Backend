@@ -6,7 +6,6 @@ import noteasy.sundo.global.configuration.FilterConfiguration;
 import noteasy.sundo.global.library.security.handler.CustomAccessDeniedHandler;
 import noteasy.sundo.global.library.security.handler.CustomAuthenticationEntryPointHandler;
 import noteasy.sundo.global.library.security.token.JwtTokenParser;
-import noteasy.sundo.queryfactory.persistmodel.portfolio.manager.PortfolioRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,7 +21,6 @@ import org.springframework.web.cors.CorsUtils;
 public class SecurityConfig {
 
     private final JwtTokenParser jwtTokenParser;
-    private final PortfolioRepository portfolioRepository;
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -49,6 +47,7 @@ public class SecurityConfig {
                 // wee
                 .mvcMatchers(HttpMethod.POST, "/wee/room").hasRole("STUDENT")
                 .mvcMatchers(HttpMethod.POST, "/wee/room/{room_id}").hasAnyRole("STUDENT", "TEACHER")
+                .mvcMatchers(HttpMethod.GET, "/wee/room/{room_id}").hasAnyRole("STUDENT", "TEACHER")
 
                 .anyRequest().authenticated()
                 .and()
