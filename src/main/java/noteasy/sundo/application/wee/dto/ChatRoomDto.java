@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import noteasy.sundo.queryfactory.persistmodel.wee.ChatRoom;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ChatRoomDto {
@@ -38,8 +39,10 @@ public class ChatRoomDto {
                 .build();
     }
 
-    public static List<Response> listOf(List<ChatRoom> chatRooms, String studentName) {
-        return chatRooms.stream().map(c -> of(c, studentName))
+    public static List<Response> listOf(Map<ChatRoom, String> chatRoomMap) {
+        // key: chatRoom, value: studentName
+        return chatRoomMap.entrySet().stream()
+                .map(entry -> ChatRoomDto.of((entry.getKey()), entry.getValue()))
                 .collect(Collectors.toList());
     }
 }
