@@ -17,6 +17,7 @@ import noteasy.sundo.queryfactory.persistmodel.wee.MessageDirection;
 import noteasy.sundo.queryfactory.persistmodel.wee.repository.ChatMessageRepository;
 import noteasy.sundo.queryfactory.persistmodel.wee.repository.ChatRoomRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
