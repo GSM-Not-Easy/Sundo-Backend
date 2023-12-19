@@ -14,11 +14,11 @@ public class WeeExecutor {
     private final WeeSupport weeSupport;
 
     @Transactional(rollbackFor = Exception.class)
-    public void createChatRoom() {
+    public void executeCreateChatRoom() {
         weeSupport.createChatRoom();
     }
 
-    public Mono<ChatDto.Response> sendMessage(Long roomId, ChatDto.Request request) {
+    public Mono<ChatDto.Response> executeSendMessage(Long roomId, ChatDto.Request request) {
         return weeSupport.sendMessage(roomId, request);
     }
 }
