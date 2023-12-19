@@ -6,7 +6,7 @@ import noteasy.sundo.application.user.dto.UserDto;
 import noteasy.sundo.global.error.GlobalException;
 import noteasy.sundo.global.library.security.token.JwtTokenGenerator;
 import noteasy.sundo.queryfactory.persistmodel.classroom.ClassRoom;
-import noteasy.sundo.queryfactory.persistmodel.classroom.manager.ClassRoomPersistenceManager;
+import noteasy.sundo.queryfactory.persistmodel.classroom.manager.ClassRoomRepository;
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
 import noteasy.sundo.queryfactory.persistmodel.student.manager.StudentRepository;
 import noteasy.sundo.queryfactory.persistmodel.teacher.Teacher;
@@ -26,7 +26,7 @@ public class UserSupportImpl implements UserSupport {
     private final UserRepository userPm;
     private final StudentRepository studentPm;
     private final TeacherRepository teacherPm;
-    private final ClassRoomPersistenceManager classRoomPm;
+    private final ClassRoomRepository classRoomPm;
     private final PasswordEncoder encoder;
 
     private final JwtTokenGenerator jwtTokenGenerator;
