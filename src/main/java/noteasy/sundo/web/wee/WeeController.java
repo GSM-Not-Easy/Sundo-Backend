@@ -44,4 +44,10 @@ public class WeeController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/room/all")
+    public ResponseEntity<ChatRoomDto.Responses> queryAllChatRoom() {
+        ChatRoomDto.Responses responses = weeExecutor.executeQueryAllChatRoom();
+        return ResponseEntity.ok(responses);
+    }
+
 }
