@@ -6,7 +6,6 @@ import noteasy.sundo.global.configuration.FilterConfiguration;
 import noteasy.sundo.global.library.security.handler.CustomAccessDeniedHandler;
 import noteasy.sundo.global.library.security.handler.CustomAuthenticationEntryPointHandler;
 import noteasy.sundo.global.library.security.token.JwtTokenParser;
-import noteasy.sundo.queryfactory.persistmodel.portfolio.manager.PortfolioRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
