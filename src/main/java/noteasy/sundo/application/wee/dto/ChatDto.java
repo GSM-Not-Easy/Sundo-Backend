@@ -21,6 +21,7 @@ public class ChatDto {
     @Builder
     @RequiredArgsConstructor
     public static  class Response {
+        private final Long chatMessageId;
         private final Long to;
         private final Long from;
         private final String message;
@@ -30,6 +31,7 @@ public class ChatDto {
 
     public static Response of(ChatMessage message, Long to, Long from) {
         return Response.builder()
+                .chatMessageId(message.getId())
                 .to(to)
                 .from(from)
                 .message(message.getMessage())
