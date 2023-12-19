@@ -21,6 +21,9 @@ public class ChatRoom {
     @Column(name = "chat_room_name", nullable = false)
     private String chatRoomName;
 
+    /**
+     * student와 wee유저의 id는 User의 id로 식별합니다. (Student, Teacher id X)
+     */
     @Column(name = "student_id", nullable = false)
     private Long studentId;
 

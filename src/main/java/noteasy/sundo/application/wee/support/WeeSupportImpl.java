@@ -2,6 +2,7 @@ package noteasy.sundo.application.wee.support;
 
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.wee.dto.ChatDto;
+import noteasy.sundo.application.wee.dto.ChatRoomDto;
 import noteasy.sundo.global.error.GlobalException;
 import noteasy.sundo.global.library.security.SecurityContextUtil;
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
@@ -125,6 +126,16 @@ public class WeeSupportImpl implements WeeSupport {
                 .map(message -> convertChatMessage(message, chatRoom));
 
         return chatFlux;
+    }
+
+    @Override
+    public ChatRoomDto.Response queryMyChatRoom() {
+        User currentUser = contextUtil.currentUser();
+
+        ChatRoom chatRoom = chatRoomRepository.findByStudentId(currentUser.getId())
+                .orElseThrow(() -> new GlobalException("Not Found Student's Chat Room", HttpStatus.NOT_FOUND));
+
+        return ChatRoomDto.of(chatRoom, currentUser.getName());
     }
 
     private ChatDto.Response convertChatMessage(ChatMessage chatMessage, ChatRoom chatRoom) {
