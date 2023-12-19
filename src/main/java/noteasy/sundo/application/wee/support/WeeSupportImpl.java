@@ -2,6 +2,7 @@ package noteasy.sundo.application.wee.support;
 
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.wee.dto.ChatDto;
+import noteasy.sundo.application.wee.dto.ChatRoomDto;
 import noteasy.sundo.global.error.GlobalException;
 import noteasy.sundo.global.library.security.SecurityContextUtil;
 import noteasy.sundo.queryfactory.persistmodel.student.Student;
@@ -22,6 +23,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -125,6 +130,41 @@ public class WeeSupportImpl implements WeeSupport {
                 .map(message -> convertChatMessage(message, chatRoom));
 
         return chatFlux;
+    }
+
+    @Override
+    public ChatRoomDto.Response queryMyChatRoom() {
+        User currentUser = contextUtil.currentUser();
+
+        ChatRoom chatRoom = chatRoomRepository.findByStudentId(currentUser.getId())
+                .orElseThrow(() -> new GlobalException("Not Found Student's Chat Room", HttpStatus.NOT_FOUND));
+
+        return ChatRoomDto.of(chatRoom, currentUser.getName());
+    }
+
+    @Override
+    public ChatRoomDto.Responses queryAllChatRoom() {
+        User currentUser = contextUtil.currentUser();
+
+        Teacher wee = teacherRepository.findBySubject(Subject.WEE)
+                .orElseThrow(() -> new GlobalException("Not Found Wee Class Teacher..", HttpStatus.NOT_FOUND));
+
+        if(!currentUser.getId().equals(wee.getId())) {
+            throw new GlobalException("Forbidden to Access Because Current User is not Wee", HttpStatus.FORBIDDEN);
+        }
+
+        List<ChatRoom> chatRooms = chatRoomRepository.findAll();
+
+        // ChatRoom:StudentName
+        Map<ChatRoom, String> chatRoomMap = chatRooms.stream()
+                .collect(Collectors.toMap(
+                        Function.identity(),
+                        chatRoom -> studentRepository.queryById(chatRoom.getStudentId())
+                                .orElseThrow(() -> new GlobalException("Not Found Student", HttpStatus.NOT_FOUND))
+                                .getUser().getName()
+                ));
+
+        return ChatRoomDto.listOf(chatRoomMap);
     }
 
     private ChatDto.Response convertChatMessage(ChatMessage chatMessage, ChatRoom chatRoom) {
