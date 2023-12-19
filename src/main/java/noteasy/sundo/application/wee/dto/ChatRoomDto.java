@@ -46,4 +46,5 @@ public class ChatRoomDto {
                 .collect(Collectors.toList());
 
         return new Responses(responses);
+    }
 }
