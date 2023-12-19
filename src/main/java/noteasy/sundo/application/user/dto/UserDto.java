@@ -3,7 +3,7 @@ package noteasy.sundo.application.user.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import noteasy.sundo.queryfactory.persistmodel.teacher.Subject;
+import noteasy.sundo.queryfactory.teacher.Subject;
 import reactor.util.annotation.Nullable;
 
 import javax.persistence.EnumType;

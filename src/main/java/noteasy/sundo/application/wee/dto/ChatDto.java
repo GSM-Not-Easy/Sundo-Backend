@@ -1,8 +1,8 @@
 package noteasy.sundo.application.wee.dto;
 
 import lombok.*;
-import noteasy.sundo.queryfactory.persistmodel.wee.ChatMessage;
-import noteasy.sundo.queryfactory.persistmodel.wee.MessageDirection;
+import noteasy.sundo.queryfactory.wee.ChatMessage;
+import noteasy.sundo.queryfactory.wee.MessageDirection;
 
 import java.time.LocalDateTime;
 

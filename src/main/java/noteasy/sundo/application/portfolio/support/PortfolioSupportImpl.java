@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.portfolio.dto.PortfolioDto;
 import noteasy.sundo.global.error.GlobalException;
 import noteasy.sundo.global.library.security.SecurityContextUtil;
-import noteasy.sundo.queryfactory.persistmodel.portfolio.Portfolio;
-import noteasy.sundo.queryfactory.persistmodel.portfolio.manager.PortfolioRepository;
-import noteasy.sundo.queryfactory.persistmodel.student.Student;
-import noteasy.sundo.queryfactory.persistmodel.student.manager.StudentRepository;
-import noteasy.sundo.queryfactory.persistmodel.user.User;
+import noteasy.sundo.queryfactory.portfolio.Portfolio;
+import noteasy.sundo.queryfactory.portfolio.manager.PortfolioRepository;
+import noteasy.sundo.queryfactory.student.Student;
+import noteasy.sundo.queryfactory.student.manager.StudentRepository;
+import noteasy.sundo.queryfactory.user.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 

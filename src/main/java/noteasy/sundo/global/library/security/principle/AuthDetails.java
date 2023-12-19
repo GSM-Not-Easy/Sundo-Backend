@@ -1,7 +1,7 @@
 package noteasy.sundo.global.library.security.principle;
 
 import lombok.RequiredArgsConstructor;
-import noteasy.sundo.queryfactory.persistmodel.user.User;
+import noteasy.sundo.queryfactory.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

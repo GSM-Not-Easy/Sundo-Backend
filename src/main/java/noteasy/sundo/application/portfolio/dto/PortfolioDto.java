@@ -1,8 +1,8 @@
 package noteasy.sundo.application.portfolio.dto;
 
 import lombok.*;
-import noteasy.sundo.queryfactory.persistmodel.portfolio.Portfolio;
-import noteasy.sundo.queryfactory.persistmodel.student.Student;
+import noteasy.sundo.queryfactory.portfolio.Portfolio;
+import noteasy.sundo.queryfactory.student.Student;
 import reactor.util.annotation.Nullable;
 
 import javax.validation.constraints.NotBlank;

@@ -2,7 +2,7 @@ package noteasy.sundo.application.user.support;
 
 import noteasy.sundo.application.auth.dto.TokenDto;
 import noteasy.sundo.application.user.dto.UserDto;
-import noteasy.sundo.queryfactory.persistmodel.user.User;
+import noteasy.sundo.queryfactory.user.User;
 
 public interface UserSupport {
 

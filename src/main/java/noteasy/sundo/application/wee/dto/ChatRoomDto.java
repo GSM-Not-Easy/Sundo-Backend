@@ -3,7 +3,7 @@ package noteasy.sundo.application.wee.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import noteasy.sundo.queryfactory.persistmodel.wee.ChatRoom;
+import noteasy.sundo.queryfactory.wee.ChatRoom;
 
 import java.util.List;
 import java.util.Map;

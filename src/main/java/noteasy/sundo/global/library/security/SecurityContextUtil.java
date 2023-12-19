@@ -2,8 +2,8 @@ package noteasy.sundo.global.library.security;
 
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.global.error.GlobalException;
-import noteasy.sundo.queryfactory.persistmodel.user.User;
-import noteasy.sundo.queryfactory.persistmodel.user.manager.UserRepository;
+import noteasy.sundo.queryfactory.user.User;
+import noteasy.sundo.queryfactory.user.manager.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
