@@ -6,10 +6,10 @@ import javax.persistence.*;
 
 @Entity
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tbl_chat_room")
 public class ChatRoom {
 

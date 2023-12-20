@@ -3,7 +3,9 @@ package noteasy.sundo.application.wee.executor;
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.wee.dto.ChatDto;
 import noteasy.sundo.application.wee.dto.ChatRoomDto;
-import noteasy.sundo.application.wee.support.WeeSupport;
+import noteasy.sundo.application.wee.dto.ConsultDto;
+import noteasy.sundo.application.wee.support.WeeChatSupport;
+import noteasy.sundo.application.wee.support.WeeConsultSupport;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
@@ -13,26 +15,32 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class WeeExecutor {
 
-    private final WeeSupport weeSupport;
+    private final WeeChatSupport weeChatSupport;
+    private final WeeConsultSupport weeConsultSupport;
 
     @Transactional(rollbackFor = Exception.class)
     public void executeCreateChatRoom() {
-        weeSupport.createChatRoom();
+        weeChatSupport.createChatRoom();
     }
 
     public Mono<ChatDto.Response> executeSendMessage(Long roomId, ChatDto.Request request) {
-        return weeSupport.sendMessage(roomId, request);
+        return weeChatSupport.sendMessage(roomId, request);
     }
 
     public Flux<ChatDto.Response> executeQueryMessage(Long roomId) {
-        return weeSupport.queryMessage(roomId);
+        return weeChatSupport.queryMessage(roomId);
     }
 
     public ChatRoomDto.Response executeQueryMyChatRoom() {
-        return weeSupport.queryMyChatRoom();
+        return weeChatSupport.queryMyChatRoom();
     }
 
     public ChatRoomDto.Responses executeQueryAllChatRoom() {
-        return weeSupport.queryAllChatRoom();
+        return weeChatSupport.queryAllChatRoom();
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void executeCreateConsultPlan(ConsultDto.CreateConsultRequest request) {
+        weeConsultSupport.createConsultPlan(request);
     }
 }

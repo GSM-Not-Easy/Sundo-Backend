@@ -3,10 +3,12 @@ package noteasy.sundo.web.wee;
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.wee.dto.ChatDto;
 import noteasy.sundo.application.wee.dto.ChatRoomDto;
+import noteasy.sundo.application.wee.dto.ConsultDto;
 import noteasy.sundo.application.wee.executor.WeeExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -48,6 +50,12 @@ public class WeeController {
     public ResponseEntity<ChatRoomDto.Responses> queryAllChatRoom() {
         ChatRoomDto.Responses responses = weeExecutor.executeQueryAllChatRoom();
         return ResponseEntity.ok(responses);
+    }
+
+    @PostMapping("/consult")
+    public ResponseEntity<Void> createConsultPlan(@Validated @RequestBody ConsultDto.CreateConsultRequest request) {
+        weeExecutor.executeCreateConsultPlan(request);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }

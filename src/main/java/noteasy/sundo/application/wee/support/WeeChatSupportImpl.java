@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class WeeSupportImpl implements WeeSupport {
+public class WeeChatSupportImpl implements WeeChatSupport {
 
     private final ChatRoomRepository chatRoomRepository;
     private final ChatMessageRepository chatMessageRepository;
