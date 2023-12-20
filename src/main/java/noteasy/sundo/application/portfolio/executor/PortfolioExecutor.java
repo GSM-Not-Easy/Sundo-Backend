@@ -17,7 +17,21 @@ public class PortfolioExecutor {
         portfolioSupport.createPortfolio(request);
     }
 
-    public PortfolioDto.Responses queryAllPortfolioList(Integer grade, Integer classNum, String keyword) {
+    public PortfolioDto.Responses executeQueryAllPortfolioList(Integer grade, Integer classNum, String keyword) {
         return portfolioSupport.queryAllPortfolio(grade, classNum, keyword);
+    }
+
+    public PortfolioDto.Detail executeQueryPortfolioDetail(Long id) {
+        return portfolioSupport.queryPortfolioDetail(id);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void executeUpdatePortfolio(Long id, PortfolioDto.UpdatePortfolioRequest request) {
+        portfolioSupport.updatePortfolio(id, request);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void executeDeletePortfolio(Long id) {
+        portfolioSupport.deletePortfolio(id);
     }
 }

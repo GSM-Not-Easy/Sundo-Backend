@@ -26,7 +26,13 @@ public class PortfolioController {
             @RequestParam(defaultValue = "0") Integer grade,
             @RequestParam(defaultValue = "0") Integer number,
             @RequestParam(defaultValue = "") String keyword) {
-        PortfolioDto.Responses responses = portfolioExecutor.queryAllPortfolioList(grade, number, keyword);
+        PortfolioDto.Responses responses = portfolioExecutor.executeQueryAllPortfolioList(grade, number, keyword);
         return ResponseEntity.ok(responses);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PortfolioDto.Detail> queryPortfolioDetail(@PathVariable Long id) {
+        portfolioExecutor.execute
+    }
+
 }
