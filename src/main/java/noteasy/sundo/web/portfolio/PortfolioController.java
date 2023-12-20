@@ -43,6 +43,10 @@ public class PortfolioController {
         return ResponseEntity.noContent().build();
     }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePortfolio(@PathVariable Long id) {
+        portfolioExecutor.executeDeletePortfolio(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
