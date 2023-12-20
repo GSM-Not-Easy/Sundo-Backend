@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-import static noteasy.sundo.queryfactory.persistmodel.classroom.QClassRoom.classRoom;
+import static noteasy.sundo.queryfactory.classroom.QClassRoom.classRoom;
 
 @Component
 @RequiredArgsConstructor

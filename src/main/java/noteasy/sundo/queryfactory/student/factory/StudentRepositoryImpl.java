@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-import static noteasy.sundo.queryfactory.persistmodel.student.QStudent.*;
+import static noteasy.sundo.queryfactory.student.QStudent.*;
 
 
 @Component

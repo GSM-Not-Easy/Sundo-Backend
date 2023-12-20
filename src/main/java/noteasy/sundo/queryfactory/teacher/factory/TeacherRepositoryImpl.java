@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-import static noteasy.sundo.queryfactory.persistmodel.teacher.QTeacher.teacher;
+import static noteasy.sundo.queryfactory.teacher.QTeacher.teacher;
 
 @Component
 @RequiredArgsConstructor

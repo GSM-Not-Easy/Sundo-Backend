@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-import static noteasy.sundo.queryfactory.persistmodel.user.QUser.user;
+import static noteasy.sundo.queryfactory.user.QUser.user;
 
 @Repository
 @RequiredArgsConstructor

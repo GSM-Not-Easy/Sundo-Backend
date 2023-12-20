@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
-import static noteasy.sundo.queryfactory.persistmodel.portfolio.QPortfolio.*;
-import static noteasy.sundo.queryfactory.persistmodel.student.QStudent.student;
-import static noteasy.sundo.queryfactory.persistmodel.user.QUser.user;
+import static noteasy.sundo.queryfactory.portfolio.QPortfolio.*;
+import static noteasy.sundo.queryfactory.student.QStudent.student;
+import static noteasy.sundo.queryfactory.user.QUser.user;
 
 @Component
 @RequiredArgsConstructor
