@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.auth.dto.TokenDto;
 import noteasy.sundo.global.library.security.principle.AuthDetailsService;
-import noteasy.sundo.queryfactory.persistmodel.user.Authority;
+import noteasy.sundo.queryfactory.user.Authority;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
