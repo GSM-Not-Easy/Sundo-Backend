@@ -43,11 +43,11 @@ public class ConsultRepositoryImpl implements BaseQueryFactory<Consult, Long>, C
     }
 
     @Override
-    public Boolean existsByStudentAndConsultDate(Long id, LocalDateTime consultDate) {
+    public Boolean existsByStudentIdAndConsultDate(Long id, LocalDateTime consultDate) {
         var result = queryFactory.selectOne()
                 .from(consult)
                 .where(consult.isDeleted.isFalse()
-                        .and(consult.id.eq(id))
+                        .and(consult.student.id.eq(id))
                         .and(consult.consultDate.eq(consultDate)))
                 .fetchOne();
 
