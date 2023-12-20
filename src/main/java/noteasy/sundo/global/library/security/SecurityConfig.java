@@ -43,6 +43,9 @@ public class SecurityConfig {
                 // portfolio
                 .mvcMatchers(HttpMethod.POST, "/portfolio").hasRole("STUDENT")
                 .mvcMatchers(HttpMethod.GET, "/portfolio").authenticated()
+                .mvcMatchers(HttpMethod.GET, "/portfolio/{id}").authenticated()
+                .mvcMatchers(HttpMethod.PATCH, "/portfolio/{id}").hasRole("STUDENT")
+                .mvcMatchers(HttpMethod.DELETE, "/portfolio/{id}").hasRole("STUDENT")
 
                 // wee
                 .mvcMatchers(HttpMethod.POST, "/wee/room").hasRole("STUDENT")
