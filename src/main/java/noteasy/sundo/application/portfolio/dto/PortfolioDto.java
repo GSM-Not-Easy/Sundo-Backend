@@ -20,6 +20,9 @@ public class PortfolioDto {
         private String introduce;
 
         @Nullable
+        private String major;
+
+        @Nullable
         private String githubLink;
 
         @Nullable
@@ -36,6 +39,9 @@ public class PortfolioDto {
 
         @NotBlank
         private String introduce;
+
+        @Nullable
+        private String major;
 
         @Nullable
         private String githubLink;
@@ -65,6 +71,8 @@ public class PortfolioDto {
 
         private final String studentName;
 
+        private final String major;
+
         private final Integer grade;
 
         private final Integer classNum;
@@ -82,6 +90,8 @@ public class PortfolioDto {
         private final Long studentId;
 
         private final String studentName;
+
+        private final String major;
 
         private final Integer grade;
 
@@ -105,6 +115,7 @@ public class PortfolioDto {
                 .id(portfolio.getId())
                 .studentId(student.getId())
                 .studentName(student.getUser().getName())
+                .major(portfolio.getMajor())
                 .grade(student.getClassRoom().getGrade())
                 .classNum(student.getClassRoom().getClassNum())
                 .number(student.getNumber())
@@ -118,6 +129,7 @@ public class PortfolioDto {
                 .id(portfolio.getId())
                 .studentId(student.getId())
                 .studentName(student.getUser().getName())
+                .major(portfolio.getMajor())
                 .grade(student.getClassRoom().getGrade())
                 .classNum(student.getClassRoom().getClassNum())
                 .number(student.getNumber())

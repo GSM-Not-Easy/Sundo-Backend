@@ -32,6 +32,10 @@ public class Portfolio {
     @NotNull
     private String introduce;
 
+    @Column(nullable = false, columnDefinition = "VARCHAR(100)")
+    @NotNull
+    private String major;
+
     @Column(name = "github_link")
     private String githubLink;
 
