@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.EnumType;
@@ -14,9 +15,10 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
-@Document(collation = "chat_message")
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collation = "chat_message")
+@CompoundIndex(def = "{'id': 1, 'createdAt': 1}")
 public class ChatMessage {
 
     @Id

@@ -23,6 +23,9 @@ public class Consult {
     @Column(name = "consult_date", nullable = false)
     private LocalDateTime consultDate;
 
+    @Column(nullable = false, columnDefinition = "TINYINT")
+    private Integer period;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private Student student;

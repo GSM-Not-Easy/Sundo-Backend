@@ -5,9 +5,7 @@ import noteasy.sundo.application.wee.dto.ChatRoomDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
-public interface WeeSupport {
+public interface WeeChatSupport {
     void createChatRoom();
     Mono<ChatDto.Response> sendMessage(Long roomId, ChatDto.Request request);
     Flux<ChatDto.Response> queryMessage(Long roomId);

@@ -5,10 +5,12 @@ import lombok.RequiredArgsConstructor;
 import noteasy.sundo.queryfactory.BaseQueryFactory;
 import noteasy.sundo.queryfactory.teacher.Subject;
 import noteasy.sundo.queryfactory.teacher.Teacher;
+import noteasy.sundo.queryfactory.user.User;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+import static noteasy.sundo.queryfactory.student.QStudent.student;
 import static noteasy.sundo.queryfactory.teacher.QTeacher.teacher;
 
 @Component
@@ -30,6 +32,15 @@ public class TeacherRepositoryImpl implements BaseQueryFactory<Teacher, Long>, T
     public Optional<Teacher> findBySubject(Subject subject) {
         var result = queryFactory.selectFrom(teacher)
                 .where(teacher.isDeleted.isFalse().and(teacher.subject.eq(subject)))
+                .fetchOne();
+
+        return Optional.ofNullable(result);
+    }
+
+    @Override
+    public Optional<Teacher> findByUser(User user) {
+        var result = queryFactory.selectFrom(teacher)
+                .where(teacher.isDeleted.isFalse().and(teacher.user.id.eq(user.getId())))
                 .fetchOne();
 
         return Optional.ofNullable(result);
