@@ -5,6 +5,7 @@ import noteasy.sundo.application.portfolio.dto.PortfolioDto;
 import noteasy.sundo.application.portfolio.executor.PortfolioExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -32,7 +33,16 @@ public class PortfolioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PortfolioDto.Detail> queryPortfolioDetail(@PathVariable Long id) {
-        portfolioExecutor.execute
+        PortfolioDto.Detail result = portfolioExecutor.executeQueryPortfolioDetail(id);
+        return ResponseEntity.ok(result);
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updatePortfolio(@PathVariable Long id, @RequestBody @Validated PortfolioDto.UpdatePortfolioRequest request) {
+        portfolioExecutor.executeUpdatePortfolio(id, request);
+        return ResponseEntity.noContent().build();
+    }
+
+
 
 }
