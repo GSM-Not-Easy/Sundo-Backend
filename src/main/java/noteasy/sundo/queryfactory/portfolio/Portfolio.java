@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import noteasy.sundo.application.portfolio.dto.PortfolioDto;
 import noteasy.sundo.queryfactory.student.Student;
 
 import javax.persistence.*;
@@ -43,4 +44,15 @@ public class Portfolio {
     @Column(name = "is_deleted")
     @Builder.Default
     private boolean isDeleted = Boolean.FALSE;
+
+    public Portfolio updatePortfolio(PortfolioDto.UpdatePortfolioRequest request) {
+        return Portfolio.builder()
+                .id(this.id)
+                .student(this.student)
+                .introduce(request.getIntroduce())
+                .portfolioLink(request.getPortfolioLink())
+                .githubLink(request.getGithubLink())
+                .blogLink(request.getBlogLink())
+                .build();
+    }
 }

@@ -61,12 +61,34 @@ public class PortfolioSupportImpl implements PortfolioSupport {
     }
 
     @Override
-    public void updatePortfolio(PortfolioDto.UpdatePortfolioRequest request) {
+    public void updatePortfolio(Long id, PortfolioDto.UpdatePortfolioRequest request) {
+        Portfolio portfolio = portfolioRepository.queryById(id)
+                .orElseThrow(() -> new GlobalException("Not Found Portfolio", HttpStatus.NOT_FOUND));
 
+        validateToAccessPortfolio(portfolio);
+
+        portfolioRepository.save(portfolio.updatePortfolio(request));
     }
 
     @Override
     public void deletePortfolio(Long id) {
+        Portfolio portfolio = portfolioRepository.queryById(id)
+                .orElseThrow(() -> new GlobalException("Not Found Portfolio", HttpStatus.NOT_FOUND));
 
+        validateToAccessPortfolio(portfolio);
+
+        portfolioRepository.deleteById(id);
     }
+
+    private void validateToAccessPortfolio(Portfolio portfolio) {
+        User currentUser = securityContextUtil.currentUser();
+
+        Student student = studentRepository.findByUser(currentUser)
+                .orElseThrow(() -> new GlobalException("Student Not Found", HttpStatus.NOT_FOUND));
+
+        if(student != portfolio.getStudent()) {
+            throw new GlobalException("Access Denied to access portfolio", HttpStatus.FORBIDDEN);
+        }
+    }
+
 }

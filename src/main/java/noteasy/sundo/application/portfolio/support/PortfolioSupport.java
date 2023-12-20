@@ -6,6 +6,6 @@ public interface PortfolioSupport {
     void createPortfolio(PortfolioDto.CreatePortfolioRequest request);
     PortfolioDto.Responses queryAllPortfolio(Integer grade, Integer classNum, String keyword);
     PortfolioDto.Detail queryPortfolioDetail(Long id);
-    void updatePortfolio(PortfolioDto.UpdatePortfolioRequest request);
+    void updatePortfolio(Long id, PortfolioDto.UpdatePortfolioRequest request);
     void deletePortfolio(Long id);
 }
