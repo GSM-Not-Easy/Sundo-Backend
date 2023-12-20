@@ -53,6 +53,7 @@ public class SecurityConfig {
                 .mvcMatchers(HttpMethod.GET, "/wee/room/{room_id}").hasAnyRole("STUDENT", "TEACHER")
                 .mvcMatchers(HttpMethod.GET, "/wee/room/my").hasRole("STUDENT")
                 .mvcMatchers(HttpMethod.GET, "/wee/room/all").hasRole("TEACHER")
+                .mvcMatchers(HttpMethod.POST, "/wee/consult").hasRole("STUDENT")
 
                 .anyRequest().authenticated()
                 .and()
