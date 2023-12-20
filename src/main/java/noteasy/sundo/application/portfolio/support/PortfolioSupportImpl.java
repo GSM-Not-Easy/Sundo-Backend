@@ -37,6 +37,7 @@ public class PortfolioSupportImpl implements PortfolioSupport {
         Portfolio portfolio = Portfolio.builder()
                 .student(student)
                 .introduce(request.getIntroduce())
+                .major(request.getMajor())
                 .githubLink(request.getGithubLink())
                 .portfolioLink(request.getPortfolioLink())
                 .blogLink(request.getBlogLink())
