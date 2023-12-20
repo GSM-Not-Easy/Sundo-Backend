@@ -3,7 +3,9 @@ package noteasy.sundo.application.wee.executor;
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.wee.dto.ChatDto;
 import noteasy.sundo.application.wee.dto.ChatRoomDto;
+import noteasy.sundo.application.wee.dto.ConsultDto;
 import noteasy.sundo.application.wee.support.WeeChatSupport;
+import noteasy.sundo.application.wee.support.WeeConsultSupport;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
@@ -14,6 +16,7 @@ import reactor.core.publisher.Mono;
 public class WeeExecutor {
 
     private final WeeChatSupport weeChatSupport;
+    private final WeeConsultSupport weeConsultSupport;
 
     @Transactional(rollbackFor = Exception.class)
     public void executeCreateChatRoom() {
@@ -34,5 +37,10 @@ public class WeeExecutor {
 
     public ChatRoomDto.Responses executeQueryAllChatRoom() {
         return weeChatSupport.queryAllChatRoom();
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void executeCreateConsultPlan(ConsultDto.CreateConsultRequest request) {
+        weeConsultSupport.createConsultPlan(request);
     }
 }
