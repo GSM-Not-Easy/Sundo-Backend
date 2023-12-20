@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-import static noteasy.sundo.queryfactory.student.QStudent.student;
 import static noteasy.sundo.queryfactory.teacher.QTeacher.teacher;
 
 @Component

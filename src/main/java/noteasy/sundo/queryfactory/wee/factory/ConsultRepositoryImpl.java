@@ -6,13 +6,14 @@ import noteasy.sundo.queryfactory.BaseQueryFactory;
 import noteasy.sundo.queryfactory.wee.Consult;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static noteasy.sundo.queryfactory.wee.QConsult.consult;
 
 @Repository
 @RequiredArgsConstructor
-public class ConsultRepositoryImpl implements BaseQueryFactory<Consult, Long> {
+public class ConsultRepositoryImpl implements BaseQueryFactory<Consult, Long>, ConsultRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
@@ -39,5 +40,17 @@ public class ConsultRepositoryImpl implements BaseQueryFactory<Consult, Long> {
                 .where(consult.isDeleted.isFalse().and(consult.id.eq(id)))
                 .set(consult.isDeleted, false)
                 .execute();
+    }
+
+    @Override
+    public Boolean existsByStudentAndConsultDate(Long id, LocalDateTime consultDate) {
+        var result = queryFactory.selectOne()
+                .from(consult)
+                .where(consult.isDeleted.isFalse()
+                        .and(consult.id.eq(id))
+                        .and(consult.consultDate.eq(consultDate)))
+                .fetchOne();
+
+        return result != null;
     }
 }

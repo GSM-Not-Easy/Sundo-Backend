@@ -3,6 +3,7 @@ package noteasy.sundo.application.wee.support;
 import lombok.RequiredArgsConstructor;
 import noteasy.sundo.application.wee.dto.ConsultDto;
 import noteasy.sundo.global.library.security.SecurityContextUtil;
+import noteasy.sundo.queryfactory.student.Student;
 import noteasy.sundo.queryfactory.student.manager.StudentRepository;
 import noteasy.sundo.queryfactory.teacher.manager.TeacherRepository;
 import noteasy.sundo.queryfactory.user.User;
@@ -19,9 +20,11 @@ public class WeeConsultSupportImpl implements WeeConsultSupport {
     private final SecurityContextUtil securityContextUtil;
 
 
+    // student
     @Override
     public void createConsultPlan(ConsultDto.CreateConsultRequest request) {
-        User currentUser = securityContextUtil.currentUser();
+        Student student = securityContextUtil.currentStudent();
+
 
     }
 }
