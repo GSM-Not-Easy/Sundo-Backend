@@ -2,7 +2,6 @@ package noteasy.sundo.application.food.dto;
 
 
 import lombok.*;
-import noteasy.sundo.application.wee.dto.ChatRoomDto;
 import noteasy.sundo.queryfactory.food.Food;
 import noteasy.sundo.queryfactory.student.Student;
 
