@@ -2,12 +2,15 @@ package noteasy.sundo.application.food.dto;
 
 
 import lombok.*;
+import noteasy.sundo.application.wee.dto.ChatRoomDto;
 import noteasy.sundo.queryfactory.food.Food;
 import noteasy.sundo.queryfactory.student.Student;
 
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class FoodDto {
@@ -53,5 +56,13 @@ public class FoodDto {
                 .classNum(student.getClassRoom().getClassNum())
                 .number(student.getNumber())
                 .build();
+    }
+
+    public static Responses listOf(Map<Food, Student> foodMap) {
+        List<FoodDto.Response> responses = foodMap.entrySet().stream()
+                .map(entry -> FoodDto.of((entry.getKey()), entry.getValue()))
+                .collect(Collectors.toList());
+
+        return new Responses(responses);
     }
 }
