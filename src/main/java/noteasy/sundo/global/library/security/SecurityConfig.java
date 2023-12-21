@@ -55,6 +55,10 @@ public class SecurityConfig {
                 .mvcMatchers(HttpMethod.GET, "/wee/room/all").hasRole("TEACHER")
                 .mvcMatchers(HttpMethod.POST, "/wee/consult").hasRole("STUDENT")
 
+                // food
+                .mvcMatchers(HttpMethod.POST, "/food").hasRole("STUDENT")
+                .mvcMatchers(HttpMethod.GET, "/food").authenticated()
+
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
