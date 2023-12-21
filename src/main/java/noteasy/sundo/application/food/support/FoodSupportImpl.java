@@ -22,7 +22,7 @@ public class FoodSupportImpl implements FoodSupport {
     private final SecurityContextUtil contextUtil;
 
     @Override
-    public void saveFood(FoodDto.Request request) {
+    public void createFood(FoodDto.Request request) {
         Student student = contextUtil.currentStudent();
 
         Food food = Food.builder()

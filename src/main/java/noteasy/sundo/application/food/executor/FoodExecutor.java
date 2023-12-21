@@ -12,6 +12,7 @@ public class FoodExecutor {
 
     private final FoodSupport foodSupport;
 
+    // 비동기로 급식 등록을 처리한다.
     @Async
     public void executeCreateFood(FoodDto.Request request) {
         foodSupport.saveFood(request);
