@@ -1,4 +1,4 @@
-package noteasy.sundo.global.library.mongodb;
+package noteasy.sundo.global.library.mongo;
 
 import lombok.Getter;
 import lombok.Setter;

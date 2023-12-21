@@ -1,4 +1,4 @@
-package noteasy.sundo.global.library.mongodb;
+package noteasy.sundo.global.library.mongo;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoOperations;
