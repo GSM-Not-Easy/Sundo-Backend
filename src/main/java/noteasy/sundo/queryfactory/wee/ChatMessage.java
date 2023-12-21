@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
 
@@ -20,6 +21,9 @@ import java.time.LocalDateTime;
 @Document(collation = "chat_message")
 @CompoundIndex(def = "{'id': 1, 'createdAt': 1}")
 public class ChatMessage {
+
+    @Transient
+    private static  final String SEQUENCE_NAME = "chat_message_sequence";
 
     @Id
     private Long id;
