@@ -1,15 +1,13 @@
 package noteasy.sundo.queryfactory.wee;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
 
@@ -21,7 +19,11 @@ import java.time.LocalDateTime;
 @CompoundIndex(def = "{'id': 1, 'createdAt': 1}")
 public class ChatMessage {
 
+    @Transient
+    public static  final String SEQUENCE_NAME = "chat_message_sequence";
+
     @Id
+    @Setter
     private Long id;
 
     private Long roomId;
