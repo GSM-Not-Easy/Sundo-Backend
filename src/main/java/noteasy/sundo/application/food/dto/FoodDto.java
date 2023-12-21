@@ -58,6 +58,12 @@ public class FoodDto {
                 .build();
     }
 
+    /**
+     * key food
+     * value student
+     * @param foodMap
+     * @return FoodDto.Responses
+     */
     public static Responses listOf(Map<Food, Student> foodMap) {
         List<FoodDto.Response> responses = foodMap.entrySet().stream()
                 .map(entry -> FoodDto.of((entry.getKey()), entry.getValue()))
