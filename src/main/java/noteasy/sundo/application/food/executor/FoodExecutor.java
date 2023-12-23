@@ -18,4 +18,8 @@ public class FoodExecutor {
         foodSupport.createFood(request);
     }
 
+    public FoodDto.Responses queryAllFoods() {
+        return foodSupport.queryAllFoods();
+    }
+
 }
