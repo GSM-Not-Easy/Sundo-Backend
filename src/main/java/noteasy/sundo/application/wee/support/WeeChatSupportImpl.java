@@ -156,7 +156,7 @@ public class WeeChatSupportImpl implements WeeChatSupport {
         List<ChatRoom> chatRooms = chatRoomRepository.findAll();
 
         // ChatRoom:StudentName
-        Map<ChatRoom, String> chatRoomMap = chatRooms.stream()
+        Map<ChatRoom, String> chatRoomMap = chatRooms.parallelStream()
                 .collect(Collectors.toMap(
                         Function.identity(),
                         chatRoom -> studentRepository.queryById(chatRoom.getStudentId())

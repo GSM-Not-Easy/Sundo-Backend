@@ -4,4 +4,5 @@ import noteasy.sundo.application.food.dto.FoodDto;
 
 public interface FoodSupport {
     void createFood(FoodDto.Request request);
+    FoodDto.Responses queryAllFoods();
 }

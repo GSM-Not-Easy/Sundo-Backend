@@ -6,10 +6,7 @@ import noteasy.sundo.application.food.executor.FoodExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,6 +19,12 @@ public class FoodController {
     public ResponseEntity<Void> createFood(@RequestBody @Validated FoodDto.Request request) {
         foodExecutor.executeCreateFood(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping
+    public ResponseEntity<FoodDto.Responses> queryAllFoods() {
+        FoodDto.Responses responses = foodExecutor.queryAllFoods();
+        return ResponseEntity.ok(responses);
     }
 
 }
