@@ -7,3 +7,18 @@ services:
     hostname: bitgouel-redis
     ports:
       - "6379:6379"
+
+  mongodb:
+    container_name: sundo
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Esperer123!
+
+  mysql:
+    container_name: sundo
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Esperer123!
+
+
