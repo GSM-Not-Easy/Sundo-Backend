@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .requestMatchers(CorsUtils::isPreFlightRequest)
                 .permitAll()
 
+                // health check
                 .mvcMatchers(HttpMethod.GET, "/").permitAll()
 
                 // auth
