@@ -24,5 +24,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Esperer123!
       MYSQL_DATABASE: sundo
+    ports:
+      - "3306:3306"
 
 
