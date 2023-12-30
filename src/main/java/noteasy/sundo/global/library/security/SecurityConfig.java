@@ -43,6 +43,7 @@ public class SecurityConfig {
                 // auth
                 .mvcMatchers(HttpMethod.POST, "/auth/student").permitAll()
                 .mvcMatchers(HttpMethod.POST, "/auth/teacher").permitAll()
+                .mvcMatchers(HttpMethod.POST, "/auth/login").permitAll()
 
                 // portfolio
                 .mvcMatchers(HttpMethod.POST, "/portfolio").hasRole("STUDENT")
