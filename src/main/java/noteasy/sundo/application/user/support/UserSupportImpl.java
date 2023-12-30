@@ -16,6 +16,7 @@ import noteasy.sundo.queryfactory.user.Authority;
 import noteasy.sundo.queryfactory.user.User;
 import noteasy.sundo.queryfactory.user.manager.UserRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +28,7 @@ public class UserSupportImpl implements UserSupport {
     private final StudentRepository studentPm;
     private final TeacherRepository teacherPm;
     private final ClassRoomRepository classRoomPm;
-    private final PasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder;
 
     private final JwtTokenGenerator jwtTokenGenerator;
 
