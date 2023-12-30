@@ -12,7 +12,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowCredentials(true)
                 .allowedHeaders("Authorization", "RefreshToken", "Content-Type")
-                .allowedOrigins("/**")
+                .allowedOrigins("http://localhost:3000")
                 .allowedMethods("GET", "POST", "PATCH","PUT","DELETE","HEAD")
                 .maxAge(3000);
     }
