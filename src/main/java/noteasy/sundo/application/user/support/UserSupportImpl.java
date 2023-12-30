@@ -67,7 +67,7 @@ public class UserSupportImpl implements UserSupport {
 
         ClassRoom classRoom = null;
 
-        if(request.getIsHomeroom()) {
+        if(request.getGrade() != null && request.getClass() != null) {
              classRoom = classRoomPm.findByGradeAndClassNum(request.getGrade(), request.getClassNum())
                     .orElseThrow(() -> new GlobalException("Not Found ClassRoom by grade and classNum", HttpStatus.NOT_FOUND));
         }
