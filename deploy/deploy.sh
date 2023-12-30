@@ -1,6 +1,6 @@
 REPOSITORY=/home/ec2-user
 PROJECT_NAME=Sundo-Backend
-JAR_PATH=$REPOSITORY/$PROJECT_NAME/build/libs/bitgouel-api-0.0.1-SNAPSHOT.jar
+JAR_PATH=$REPOSITORY/$PROJECT_NAME/build/libs/sundo-0.0.1-SNAPSHOT.jar
 
 cd $REPOSITORY/$PROJECT_NAME/
 
