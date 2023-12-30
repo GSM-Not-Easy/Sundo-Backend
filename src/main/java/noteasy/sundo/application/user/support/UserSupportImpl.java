@@ -28,7 +28,7 @@ public class UserSupportImpl implements UserSupport {
     private final StudentRepository studentPm;
     private final TeacherRepository teacherPm;
     private final ClassRoomRepository classRoomPm;
-    private final BCryptPasswordEncoder encoder;
+    private final PasswordEncoder encoder;
 
     private final JwtTokenGenerator jwtTokenGenerator;
 
