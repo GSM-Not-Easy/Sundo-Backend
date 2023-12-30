@@ -28,7 +28,7 @@ public class AuthController {
 
     @PostMapping("/teacher")
     public ResponseEntity<Void> signUpTeacher(@RequestBody UserDto.TeacherSignUpRequest request) {
-        userExecutor.executeStudentSignUp(request);
+        userExecutor.executeTeacherSignUp(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
