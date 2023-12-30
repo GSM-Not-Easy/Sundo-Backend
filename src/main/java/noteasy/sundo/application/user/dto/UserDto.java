@@ -73,7 +73,7 @@ public class UserDto {
         private Subject subject;
 
         @NotNull
-        private Boolean isHomeroom;
+        private Boolean homeroomStatus;
 
         @Nullable
         private Integer grade;

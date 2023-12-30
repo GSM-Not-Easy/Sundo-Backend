@@ -3,6 +3,7 @@ package noteasy.sundo.queryfactory.teacher;
 import lombok.*;
 import noteasy.sundo.queryfactory.classroom.ClassRoom;
 import noteasy.sundo.queryfactory.user.User;
+import reactor.util.annotation.Nullable;
 
 import javax.persistence.*;
 
@@ -29,6 +30,7 @@ public class Teacher {
 
     @OneToOne
     @JoinColumn(name = "class_room_id", nullable = true)
+    @Nullable
     private ClassRoom classRoom;
 
     @Column(name = "is_deleted")
