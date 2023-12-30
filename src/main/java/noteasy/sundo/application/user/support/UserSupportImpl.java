@@ -29,7 +29,6 @@ public class UserSupportImpl implements UserSupport {
     private final TeacherRepository teacherPm;
     private final ClassRoomRepository classRoomPm;
     private final PasswordEncoder encoder;
-
     private final JwtTokenGenerator jwtTokenGenerator;
 
     @Override
@@ -121,7 +120,7 @@ public class UserSupportImpl implements UserSupport {
         User user = userPm.findByEmail(request.getEmail())
                 .orElseThrow(() -> new GlobalException("Not Found User In Login", HttpStatus.NOT_FOUND));
 
-        if(!encoder.matches(user.getPassword(), request.getPassword())) {
+        if(!encoder.matches(request.getPassword(), user.getPassword())) {
             throw new GlobalException("Password is not matched", HttpStatus.UNAUTHORIZED);
         }
 
